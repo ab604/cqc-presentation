@@ -23,6 +23,12 @@ $presentation-heading-font: 'Atkinson Hyperlegible',Atkinson+Hyperlegible
   FreeSerif, serif !default;
 //$presentation-heading-color: #383d3d !default;
 
+/* University of Southampton Logo amd marine 1 background-color */
+//$title-slide-background-color: #005C84 !default;
+  //background-image; url(https://raw.githubusercontent.com/ab604/ab604.github.io/master/docs/uos-logo-white.png);
+//	background-position; left 20px top 20px;
+//	background-size; 23%;
+
 /*-- scss:rules --*/
 .reveal a {
   line-height: 1em;

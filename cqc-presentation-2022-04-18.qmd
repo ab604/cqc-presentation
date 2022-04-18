@@ -14,31 +14,6 @@ format:
 editor: visual
 ---
 
-```{r}
-#| label: set-up
-#| echo: false
-#| eval: false
-#| message: false
-#| warning: false
-library(tidyverse) # data wrangling and plotting
-library(janitor) # cleaning names
-library(glue) # string manipulation
-library(scales) # nice figure scales
-library(sf) # map data manipulation
-library(tmap) # map plotting
-library(rmapshaper)
-library(showtext)
-library(plotly)
-library(sotoncolours)
-# Set palette
-my_cols <- sotoncolours::uos_cols("marine1","horizon3","horizon1")
-# Set ggplot font and theme
-font_add_google('Atkinson Hyperlegible')
-theme_set(theme_minimal(base_size = 22) + 
-            theme(text = element_text(family = "Atkinson Hyperlegible")))
-showtext_auto()
-```
-
 ## Aims
 
 An overview of social care provision in England for any interested party.
@@ -215,7 +190,7 @@ library(htmlwidgets)
 saveWidget(ply, "res_beds_yrs.html", selfcontained = T)
 ```
 
-#  {background-iframe="img/res_beds_yrs.html" background-interactive="true" margin="0.2"}
+#  {background-iframe="img/res_beds_yrs.html" background-interactive="true"}
 
 ## Care support requests for older people is stable in the short term, but with large regional variation {.center background-color="#005C84"}
 
