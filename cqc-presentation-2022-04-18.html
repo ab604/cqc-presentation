@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.165">
+  <meta name="author" content="Alistair Bailey">
+  <meta name="dcterms.date" content="2022-04-19">
+  <title>Social Care for Older Adults in England</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="cqc-presentation-2022-04-18_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="cqc-presentation-2022-04-18_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="cqc-presentation-2022-04-18_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+
+  <script src="cqc-presentation-2022-04-18_files/libs/clipboard/clipboard.min.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/quarto-html/tabby.min.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/quarto-html/popper.min.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/quarto-html/tippy.umd.min.js"></script>
+  <link href="cqc-presentation-2022-04-18_files/libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="cqc-presentation-2022-04-18_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet">
+  <link id="quarto-text-highlighting-styles" href="cqc-presentation-2022-04-18_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <link href="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.7em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > :last-child,
+  .callout.callout-captioned .callout-body > div > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">Social Care for Older Adults in England</h1>
+  <p class="author">Alistair Bailey</p>
+  <p class="date">2022-04-19</p>
+</section>
+
+<section class="slide level2">
+
+<div class="cell">
+
+</div>
+</section>
+<section id="aims" class="slide level2">
+<h2>Aims</h2>
+<p>An overview of social care provision in England for any interested party.</p>
+<p><strong>What is the range and scope of care services in England, and how is it assessed?</strong></p>
+</section>
+<section>
+<section id="section" class="title-slide slide level1 center">
+<h1></h1>
+
+</section>
+<h3 id="visualisations-focusing-on-care-for-older-adults">Visualisations focusing on care for older adults:</h3>
+<ul>
+<li><p>Has the capacity of care services changed in the last decade?</p></li>
+<li><p>Does capacity reflect demand?</p></li>
+<li><p>Has the quality of care changed in the last decade?</p></li>
+<li><p>Mapping dementia care services and their quality ratings.</p></li>
+</ul></section>
+<section>
+<section id="section-1" class="title-slide slide level1 center">
+<h1></h1>
+
+</section>
+<h3 class="scrollable" id="tools-used">Tools used</h3>
+<ul>
+<li>R : data wrangling, and visualisation combined with <a href="https://quarto.org/">Quarto</a> for this presentation.</li>
+</ul>
+<!-- +   [Observable](https://observablehq.com/)/D3.js for visualisation. -->
+<ul>
+<li>Git/Github for version control and hosting.</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># data wrangling and plotting</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(janitor) <span class="co"># cleaning names</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(glue) <span class="co"># string manipulation</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(scales) <span class="co"># nice figure scales</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(sf) <span class="co"># map data manipulation</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(tmap) <span class="co"># map plotting</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(rmapshaper)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(sotoncolours)</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Set palette</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>my_cols <span class="ot">&lt;-</span> sotoncolours<span class="sc">::</span><span class="fu">uos_cols</span>(<span class="st">"marine1"</span>,<span class="st">"horizon3"</span>,<span class="st">"horizon1"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Set ggplot font and theme</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">22</span>) <span class="sc">+</span> </span>
+<span id="cb1-16"><a href="#cb1-16"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>)))</span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<h3 id="data-sources">Data sources</h3>
+<ul>
+<li>Care Quality Commission (CQC)</li>
+<li>National Health Service (NHS)</li>
+<li>Office for National Statistics (ONS)</li>
+</ul></section>
+<section>
+<section id="section-2" class="title-slide slide level1 center">
+<h1></h1>
+
+</section>
+<section id="overview" class="slide level2">
+<h2>Social care in England</h2>
+<ul>
+<li><p>Social care is provided by a mixture of private companies and public services, and likewise funded by a mixture of private and public funding.</p></li>
+<li><p>The NHS and Local Authorities are the first points of contact for requesting care, and <a href="https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report">NHS Digital</a> produce annual reports about finance and activity.</p></li>
+</ul>
+<p>The <a href="https://www.cqc.org.uk/">Care Quality Commission</a> is the independent regulator of health and social care in England and are responsible for assessing the quality of these services.</p>
+</section>
+<section id="the-cqc-has-to-assess-nearly-50000-care-service-providers" class="slide level2 center" data-background-color="#005C84">
+<h2>The CQC has to assess nearly 50,000 care service providers</h2>
+<div class="fragment fade-in">
+<p>Residental social care is by far the biggest catergory.</p>
+</div>
+</section></section>
+<section>
+<section id="section-3" class="title-slide slide level1 center">
+<h1></h1>
+
+</section>
+<section id="visualising-the-present-scope-and-quantity-of-cqc-services" class="slide level2 scrollable">
+<h2>Visualising the present scope and quantity of CQC services</h2>
+<p>Using the current CQC data release and R:</p>
+<ol type="1">
+<li>Filtered the data for active services.</li>
+<li>Grouped the locations by their Primary Care Catergory and made a tally.</li>
+<li>Then plotted the totals for each catergory as an ordered barplot.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cqc_2022 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/cqc-2022.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Filter for active services and group by primary catergory</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>cqc_2022 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dormant_y_n <span class="sc">==</span> <span class="st">"N"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">group_by</span>(location_primary_inspection_category) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(location_primary_inspection_category,n),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>             <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> my_cols[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">ylab</span>(<span class="st">"Number of locations"</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Active Care Services in each Primary Care Catergory in England in April 2022. N = 49,584"</span>) </span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co"># Save figure</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#ggsave("img/cqc-scope-2022.png", width = 8, height = 4, dpi = 300)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="section-4" class="title-slide slide level1 center" data-background-image="img/cqc-scope-2022.png" data-background-size="90%">
+<h1></h1>
+<div class="footer">
+<p>Data Source: Care Quality Commission</p>
+</div>
+</section>
+<section id="the-number-of-residential-care-home-beds-for-older-people-is-falling-in-most-regions." class="slide level2 center" data-background-color="#005C84">
+<h2>The number of residential care home beds for older people is falling in most regions.</h2>
+</section>
+<section id="visualising-the-change-in-care-home-bed-capacity" class="slide level2 scrollable">
+<h2>Visualising the change in care home bed capacity</h2>
+<p>I filtered CQC data from 2013 to 2022 for care homes for older people, and then created a combined 2013 to 2022 table.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># ---------- Filter function ---------------------------------------------------</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>beds_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, f1, f2, f3, f4, beds_var, region_var, </span>
+<span id="cb3-3"><a href="#cb3-3"></a>                        local_authority_var, <span class="at">yr =</span> <span class="dv">2014</span>) {</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="co"># Make filters a quosure</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  f1 <span class="ot">=</span> <span class="fu">enquo</span>(f1) <span class="co"># Care home</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  f2 <span class="ot">=</span> <span class="fu">enquo</span>(f2) <span class="co"># Sector</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  f3 <span class="ot">=</span> <span class="fu">enquo</span>(f3) <span class="co"># Older people</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  f4 <span class="ot">=</span> <span class="fu">enquo</span>(f4) <span class="co"># Remove unspecified</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10"></a>  filt_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!!</span>f1,<span class="sc">!!</span>f2,<span class="sc">!!</span>f3,<span class="sc">!!</span>f4) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="fu">select</span>(<span class="at">region =</span> {{region_var}},</span>
+<span id="cb3-12"><a href="#cb3-12"></a>           <span class="at">local_authority =</span> {{local_authority_var}},</span>
+<span id="cb3-13"><a href="#cb3-13"></a>           <span class="at">n_beds =</span> {{beds_var}}) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> yr)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  </span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="fu">return</span>(filt_dat)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then:</p>
+<ol type="1">
+<li>Calculated the total number of residential care home beds in each region in 2013.</li>
+<li>Calculated the total number of beds for each region for each year as a proportion of the 2013 total.</li>
+<li>Created an interactive area-line plot using <code>plotly</code>.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>yrs <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">"data/cqc-residential-beds-2012-2020.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>beds_2013 <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">summarise</span>(<span class="at">total_2013 =</span> <span class="fu">sum</span>(n_beds))</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>plt <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">group_by</span>(year,region) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">summarise</span>(<span class="at">total_beds =</span> <span class="fu">sum</span>(n_beds)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">left_join</span>(beds_2013) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">group_by</span>(region,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">mutate</span>(<span class="at">pct_change =</span> ((total_2013<span class="sc">/</span>total_beds)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb4-13"><a href="#cb4-13"></a>        <span class="st">'Percent Change'</span> <span class="ot">=</span> <span class="fu">round</span>(pct_change,<span class="dv">2</span>),</span>
+<span id="cb4-14"><a href="#cb4-14"></a>          <span class="at">Year =</span> year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> <span class="st">`</span><span class="at">Percent Change</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> my_cols[<span class="dv">1</span>], <span class="at">size =</span> <span class="fl">1.25</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional Change in Residential Care Home Bed Numbers since 2013. Data Source: Care Quality Commission"</span>) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"% Change in Beds"</span>) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region)</span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a>ply <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(plt, <span class="at">tooltip =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Percent Change"</span>))</span>
+<span id="cb4-24"><a href="#cb4-24"></a></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="fu">library</span>(htmlwidgets)</span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="fu">saveWidget</span>(ply, <span class="st">"res_beds_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="section-5" class="title-slide slide level1 center" data-background-iframe="img/res_beds_yrs.html" data-background-interactive="true" data-margin="0.2">
+<h1></h1>
+
+</section>
+<section id="care-support-requests-for-older-people-is-stable-in-the-short-term-but-with-large-regional-variation" class="slide level2 center" data-background-color="#005C84">
+<h2>Care support requests for older people is stable in the short term, but with large regional variation</h2>
+</section>
+<section id="visualising-care-requests" class="slide level2 scrollable">
+<h2>Visualising care requests</h2>
+<p>Using NHS data, I created a table for care requests for 2018-2022:</p>
+<ol type="1">
+<li>I calculated the 65+ population for each region in 2020 using ONS data</li>
+<li>I then calculated the total number of requests for each region and scaled the requests per 1,000 people 65+ in each region using 2020 estimates.</li>
+<li>I then plotted the scaled requests as bar plots filled according to whether support was provided or not.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># NHS data</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>paths <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data/nhs/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">tibble</span>(<span class="at">path =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">str_extract</span>(path,<span class="st">"(?&lt;=-).{4}"</span>), </span>
+<span id="cb5-5"><a href="#cb5-5"></a>         <span class="at">full_path =</span> <span class="fu">case_when</span>(year <span class="sc">==</span> <span class="st">"2018"</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">"{path}/SALT Data File.csv"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6"></a>           year <span class="sc">==</span> <span class="st">"2019"</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">"{path}/SALT Data File (with descriptions).csv"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7"></a>           year <span class="sc">==</span> <span class="st">"2020"</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">"{path}/SALT Data File (values).csv"</span>),</span>
+<span id="cb5-8"><a href="#cb5-8"></a>                               year <span class="sc">==</span> <span class="st">"2021"</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">"{path}/SALT Data File (values).csv"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">filter</span>(year <span class="sc">!=</span> <span class="st">"2017"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># Set names sample names to create named chr vector</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>paths_v <span class="ot">&lt;-</span> paths <span class="sc">%&gt;%</span> <span class="fu">select</span>(full_path) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
+<span id="cb5-13"><a href="#cb5-13"></a>paths_v <span class="ot">&lt;-</span> paths_v <span class="sc">%&gt;%</span> <span class="fu">as.character</span>() <span class="sc">%&gt;%</span> <span class="fu">set_names</span>(paths<span class="sc">$</span>year) </span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Read the csv files into a list</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>dat <span class="ot">&lt;-</span> paths_v <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">read_csv</span>(.x)) <span class="co">#%&gt;% clean_names())</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a>region_codes <span class="ot">&lt;-</span> dat<span class="sc">$</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span> <span class="sc">%&gt;%</span> <span class="fu">filter</span>(GEOGRAPHY_LEVEL <span class="sc">==</span> <span class="st">"Region"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">distinct</span>(GEOGRAPHY_NAME,REGION_GO_CODE)</span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># 2021</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>sr_21 <span class="ot">&lt;-</span> dat<span class="sc">$</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span> <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb5-24"><a href="#cb5-24"></a>  AgeBand_Key <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb5-25"><a href="#cb5-25"></a>  ClientType_Key <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb5-26"><a href="#cb5-26"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"England"</span>,</span>
+<span id="cb5-27"><a href="#cb5-27"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"Region"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28"></a>  DATA_LEVEL <span class="sc">==</span> <span class="st">"ENTRY"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29"></a>  SequelToSupportRequest_Key <span class="sc">!=</span> <span class="dv">99</span>,</span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="co">#ITEMVALUE != ":", ITEMVALUE != "*",</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">"[c]"</span>,</span>
+<span id="cb5-32"><a href="#cb5-32"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">"[x]"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33"></a>  TableType_Key <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(ITEMVALUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-37"><a href="#cb5-37"></a>    <span class="at">care_provided =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-38"><a href="#cb5-38"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-39"><a href="#cb5-39"></a>      <span class="co"># Declined</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-41"><a href="#cb5-41"></a>      <span class="co"># Deceased</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    )</span>
+<span id="cb5-44"><a href="#cb5-44"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a>  <span class="fu">select</span>(GEOGRAPHY_NAME, value, care_provided, year)</span>
+<span id="cb5-46"><a href="#cb5-46"></a></span>
+<span id="cb5-47"><a href="#cb5-47"></a><span class="co"># 2020</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>sr_20 <span class="ot">&lt;-</span>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span> <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb5-49"><a href="#cb5-49"></a>  AgeBand_Key <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb5-50"><a href="#cb5-50"></a>  ClientType_Key <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb5-51"><a href="#cb5-51"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"England"</span>,</span>
+<span id="cb5-52"><a href="#cb5-52"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"Region"</span>,</span>
+<span id="cb5-53"><a href="#cb5-53"></a>  DATA_LEVEL <span class="sc">==</span> <span class="st">"ENTRY"</span>,</span>
+<span id="cb5-54"><a href="#cb5-54"></a>  SequelToSupportRequest_Key <span class="sc">!=</span> <span class="dv">99</span>,</span>
+<span id="cb5-55"><a href="#cb5-55"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">":"</span>,</span>
+<span id="cb5-56"><a href="#cb5-56"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">"*"</span>,</span>
+<span id="cb5-57"><a href="#cb5-57"></a>  <span class="co">#ITEMVALUE != "[c]", ITEMVALUE != "[x]",</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a>  TableType_Key <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(ITEMVALUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-61"><a href="#cb5-61"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-62"><a href="#cb5-62"></a>    <span class="at">care_provided =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-63"><a href="#cb5-63"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-64"><a href="#cb5-64"></a>      <span class="co"># Declined</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-66"><a href="#cb5-66"></a>      <span class="co"># Deceased</span></span>
+<span id="cb5-67"><a href="#cb5-67"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb5-68"><a href="#cb5-68"></a>    )</span>
+<span id="cb5-69"><a href="#cb5-69"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a>  <span class="fu">select</span>(GEOGRAPHY_NAME, value, care_provided, year)</span>
+<span id="cb5-71"><a href="#cb5-71"></a></span>
+<span id="cb5-72"><a href="#cb5-72"></a><span class="co"># 2019</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a>sr_19 <span class="ot">&lt;-</span> dat<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span> <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb5-74"><a href="#cb5-74"></a>  AgeBand_Key <span class="sc">==</span> <span class="st">"65 and over"</span>,</span>
+<span id="cb5-75"><a href="#cb5-75"></a>  ClientType_Key <span class="sc">==</span> <span class="st">"New Clients"</span>,</span>
+<span id="cb5-76"><a href="#cb5-76"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"England"</span>,</span>
+<span id="cb5-77"><a href="#cb5-77"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"Region"</span>,</span>
+<span id="cb5-78"><a href="#cb5-78"></a>  DATA_LEVEL <span class="sc">==</span> <span class="st">"ENTRY"</span>,</span>
+<span id="cb5-79"><a href="#cb5-79"></a>  SequelToSupportRequest_Key <span class="sc">!=</span> <span class="st">"99"</span>,</span>
+<span id="cb5-80"><a href="#cb5-80"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">":"</span>,</span>
+<span id="cb5-81"><a href="#cb5-81"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">"*"</span>,</span>
+<span id="cb5-82"><a href="#cb5-82"></a>  <span class="co">#ITEMVALUE != "[c]", ITEMVALUE != "[x]",</span></span>
+<span id="cb5-83"><a href="#cb5-83"></a>  TableType_Key <span class="sc">==</span> <span class="st">"Request for Support"</span></span>
+<span id="cb5-84"><a href="#cb5-84"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(ITEMVALUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-86"><a href="#cb5-86"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-87"><a href="#cb5-87"></a>    <span class="at">care_provided =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-88"><a href="#cb5-88"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="st">'No Services Provided'</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-89"><a href="#cb5-89"></a>      <span class="co"># Declined</span></span>
+<span id="cb5-90"><a href="#cb5-90"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="st">'No Services Provided - Deceased'</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-91"><a href="#cb5-91"></a>      <span class="co"># Deceased</span></span>
+<span id="cb5-92"><a href="#cb5-92"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb5-93"><a href="#cb5-93"></a>    )</span>
+<span id="cb5-94"><a href="#cb5-94"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-95"><a href="#cb5-95"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2019</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a>  <span class="fu">select</span>(GEOGRAPHY_NAME, value, care_provided, year)</span>
+<span id="cb5-97"><a href="#cb5-97"></a></span>
+<span id="cb5-98"><a href="#cb5-98"></a><span class="co"># 2018</span></span>
+<span id="cb5-99"><a href="#cb5-99"></a>sr_18 <span class="ot">&lt;-</span> dat<span class="sc">$</span><span class="st">`</span><span class="at">2018</span><span class="st">`</span> <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb5-100"><a href="#cb5-100"></a>  AgeBand_Key <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb5-101"><a href="#cb5-101"></a>  ClientType_Key <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb5-102"><a href="#cb5-102"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"England"</span>,</span>
+<span id="cb5-103"><a href="#cb5-103"></a>  GEOGRAPHY_LEVEL <span class="sc">!=</span> <span class="st">"Region"</span>,</span>
+<span id="cb5-104"><a href="#cb5-104"></a>  DATA_LEVEL <span class="sc">==</span> <span class="st">"ENTRY"</span>,</span>
+<span id="cb5-105"><a href="#cb5-105"></a>  SequelToSupportRequest_Key <span class="sc">!=</span> <span class="dv">99</span>,</span>
+<span id="cb5-106"><a href="#cb5-106"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">":"</span>,</span>
+<span id="cb5-107"><a href="#cb5-107"></a>  ITEMVALUE <span class="sc">!=</span> <span class="st">"*"</span>,</span>
+<span id="cb5-108"><a href="#cb5-108"></a>  <span class="co">#ITEMVALUE != "[c]", ITEMVALUE != "[x]",</span></span>
+<span id="cb5-109"><a href="#cb5-109"></a>  TableType_Key <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb5-110"><a href="#cb5-110"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-111"><a href="#cb5-111"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(ITEMVALUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-112"><a href="#cb5-112"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-113"><a href="#cb5-113"></a>    <span class="at">care_provided =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-114"><a href="#cb5-114"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-115"><a href="#cb5-115"></a>      <span class="co"># Declined</span></span>
+<span id="cb5-116"><a href="#cb5-116"></a>      SequelToSupportRequest_Key <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-117"><a href="#cb5-117"></a>      <span class="co"># Deceased</span></span>
+<span id="cb5-118"><a href="#cb5-118"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb5-119"><a href="#cb5-119"></a>    )</span>
+<span id="cb5-120"><a href="#cb5-120"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-121"><a href="#cb5-121"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(region_codes) <span class="sc">%&gt;%</span></span>
+<span id="cb5-122"><a href="#cb5-122"></a>  <span class="fu">select</span>(GEOGRAPHY_NAME, value, care_provided, year)</span>
+<span id="cb5-123"><a href="#cb5-123"></a></span>
+<span id="cb5-124"><a href="#cb5-124"></a><span class="co"># Combine tables</span></span>
+<span id="cb5-125"><a href="#cb5-125"></a>yrs <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(sr_18,sr_19,sr_20,sr_21) </span>
+<span id="cb5-126"><a href="#cb5-126"></a><span class="co"># Total regional requests</span></span>
+<span id="cb5-127"><a href="#cb5-127"></a>yrs_tr <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(GEOGRAPHY_NAME,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-128"><a href="#cb5-128"></a>  <span class="fu">summarise</span>(<span class="at">yrs_total =</span> <span class="fu">sum</span>(value))</span>
+<span id="cb5-129"><a href="#cb5-129"></a></span>
+<span id="cb5-130"><a href="#cb5-130"></a><span class="co"># ONS populations for England for ages 65+ in 2020</span></span>
+<span id="cb5-131"><a href="#cb5-131"></a>pops <span class="ot">&lt;-</span></span>
+<span id="cb5-132"><a href="#cb5-132"></a>  <span class="fu">read_csv</span>(<span class="st">"data/ons/ons-mid-2020-population-estimates-by-age.csv"</span>)</span>
+<span id="cb5-133"><a href="#cb5-133"></a></span>
+<span id="cb5-134"><a href="#cb5-134"></a><span class="co"># Calculate regional 65+ totals and recode</span></span>
+<span id="cb5-135"><a href="#cb5-135"></a>pops_filt <span class="ot">&lt;-</span> pops <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">70</span><span class="sc">:</span><span class="dv">95</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-136"><a href="#cb5-136"></a>  <span class="fu">filter</span>(Geography <span class="sc">==</span> <span class="st">"Region"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-137"><a href="#cb5-137"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">28</span>, <span class="at">names_to =</span> <span class="st">"age"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-138"><a href="#cb5-138"></a>  <span class="fu">group_by</span>(Name, Code, Geography) <span class="sc">%&gt;%</span></span>
+<span id="cb5-139"><a href="#cb5-139"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-140"><a href="#cb5-140"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-141"><a href="#cb5-141"></a>    <span class="at">GEOGRAPHY_NAME =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-142"><a href="#cb5-142"></a>      Name <span class="sc">==</span> <span class="st">"LONDON"</span> <span class="sc">~</span> <span class="st">"London"</span>,</span>
+<span id="cb5-143"><a href="#cb5-143"></a>      Name <span class="sc">==</span> <span class="st">"SOUTH EAST"</span> <span class="sc">~</span> <span class="st">"South East"</span>,</span>
+<span id="cb5-144"><a href="#cb5-144"></a>      Name <span class="sc">==</span> <span class="st">"NORTH EAST"</span> <span class="sc">~</span> <span class="st">"North East"</span>,</span>
+<span id="cb5-145"><a href="#cb5-145"></a>      Name <span class="sc">==</span> <span class="st">"YORKSHIRE AND THE HUMBER"</span> <span class="sc">~</span> <span class="st">"Yorkshire and The Humber"</span>,</span>
+<span id="cb5-146"><a href="#cb5-146"></a>      Name <span class="sc">==</span> <span class="st">"WEST MIDLANDS"</span> <span class="sc">~</span> <span class="st">"West Midlands"</span>,</span>
+<span id="cb5-147"><a href="#cb5-147"></a>      Name <span class="sc">==</span> <span class="st">"EAST MIDLANDS"</span> <span class="sc">~</span> <span class="st">"East Midlands"</span>,</span>
+<span id="cb5-148"><a href="#cb5-148"></a>      Name <span class="sc">==</span> <span class="st">"EAST"</span> <span class="sc">~</span> <span class="st">"East of England"</span>,</span>
+<span id="cb5-149"><a href="#cb5-149"></a>      Name <span class="sc">==</span> <span class="st">"NORTH WEST"</span> <span class="sc">~</span> <span class="st">"North West"</span>,</span>
+<span id="cb5-150"><a href="#cb5-150"></a>      Name <span class="sc">==</span> <span class="st">"SOUTH WEST"</span> <span class="sc">~</span> <span class="st">"South West"</span></span>
+<span id="cb5-151"><a href="#cb5-151"></a>    )</span>
+<span id="cb5-152"><a href="#cb5-152"></a>  )</span>
+<span id="cb5-153"><a href="#cb5-153"></a></span>
+<span id="cb5-154"><a href="#cb5-154"></a></span>
+<span id="cb5-155"><a href="#cb5-155"></a><span class="co"># Join data, calculate requests relative to 2018 and scale per 1,000 65+</span></span>
+<span id="cb5-156"><a href="#cb5-156"></a>reqs_outcome <span class="ot">&lt;-</span></span>
+<span id="cb5-157"><a href="#cb5-157"></a>  yrs <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(GEOGRAPHY_NAME, care_provided, year) <span class="sc">%&gt;%</span></span>
+<span id="cb5-158"><a href="#cb5-158"></a>  <span class="fu">summarise</span>(<span class="at">total_outcome =</span> <span class="fu">sum</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-159"><a href="#cb5-159"></a>  <span class="fu">left_join</span>(yrs_tr) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(pops_filt) <span class="sc">%&gt;%</span></span>
+<span id="cb5-160"><a href="#cb5-160"></a>  <span class="fu">group_by</span>(GEOGRAPHY_NAME, total_outcome, care_provided, year) <span class="sc">%&gt;%</span></span>
+<span id="cb5-161"><a href="#cb5-161"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-162"><a href="#cb5-162"></a>    <span class="at">per_thou =</span> (<span class="fu">sum</span>(total_outcome) <span class="sc">/</span> pop) <span class="sc">*</span> <span class="fl">1e3</span>,</span>
+<span id="cb5-163"><a href="#cb5-163"></a>    <span class="st">`</span><span class="at">Care Provided</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">case_when</span>(care_provided <span class="sc">==</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"No"</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Yes"</span>)</span>
+<span id="cb5-164"><a href="#cb5-164"></a>  )</span>
+<span id="cb5-165"><a href="#cb5-165"></a></span>
+<span id="cb5-166"><a href="#cb5-166"></a><span class="co"># Plot requests</span></span>
+<span id="cb5-167"><a href="#cb5-167"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb5-168"><a href="#cb5-168"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
+<span id="cb5-169"><a href="#cb5-169"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-170"><a href="#cb5-170"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>, <span class="at">size =</span> <span class="dv">44</span>)))</span>
+<span id="cb5-171"><a href="#cb5-171"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb5-172"><a href="#cb5-172"></a></span>
+<span id="cb5-173"><a href="#cb5-173"></a><span class="fu">library</span>(sotoncolours)</span>
+<span id="cb5-174"><a href="#cb5-174"></a>cols <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">uos_cols</span>(<span class="st">"marine1"</span>, <span class="st">"horizon3"</span>))</span>
+<span id="cb5-175"><a href="#cb5-175"></a></span>
+<span id="cb5-176"><a href="#cb5-176"></a>reqs_outcome <span class="sc">%&gt;%</span></span>
+<span id="cb5-177"><a href="#cb5-177"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> per_thou,</span>
+<span id="cb5-178"><a href="#cb5-178"></a>             <span class="at">fill =</span> <span class="st">`</span><span class="at">Care Provided</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb5-179"><a href="#cb5-179"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb5-180"><a href="#cb5-180"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cols) <span class="sc">+</span></span>
+<span id="cb5-181"><a href="#cb5-181"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> GEOGRAPHY_NAME) <span class="sc">+</span></span>
+<span id="cb5-182"><a href="#cb5-182"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Care Requests per 1000 people 65+"</span>) <span class="sc">+</span></span>
+<span id="cb5-183"><a href="#cb5-183"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional variation in requests for care 2018-2022"</span>) <span class="sc">+</span></span>
+<span id="cb5-184"><a href="#cb5-184"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb5-185"><a href="#cb5-185"></a></span>
+<span id="cb5-186"><a href="#cb5-186"></a><span class="fu">ggsave</span>(</span>
+<span id="cb5-187"><a href="#cb5-187"></a>  <span class="st">"care-requests-2018-2022.png"</span>,</span>
+<span id="cb5-188"><a href="#cb5-188"></a>  <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb5-189"><a href="#cb5-189"></a>  <span class="at">width =</span> <span class="fl">13.3</span>,</span>
+<span id="cb5-190"><a href="#cb5-190"></a>  <span class="at">height =</span> <span class="fl">7.7</span></span>
+<span id="cb5-191"><a href="#cb5-191"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="section-6" class="title-slide slide level1 center" data-background-image="img/care-requests-2018-2022.png" data-background-size="80%">
+<h1></h1>
+
+</section>
+<section id="care-quality-is-stable-across-all-regions-and-most-care-homes-are-rated-good" class="slide level2 center" data-background-color="#005C84">
+<h2>Care quality is stable across all regions, and most care homes are rated Good</h2>
+</section>
+<section id="visualising-care-quality" class="slide level2 scrollable">
+<h2>Visualising care quality</h2>
+<p>Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables.</p>
+<ol type="1">
+<li></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># ---------------------------- Read in xlsx files ------------------------------</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Create a paths vector</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>paths <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data/quality/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">tibble</span>(<span class="at">path =</span> .) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(path, <span class="st">"ods"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">str_extract</span>(path, <span class="st">"(?&lt;=y-).{4}"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co"># Set names sample names to create named chr vector</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>paths_v <span class="ot">&lt;-</span> paths <span class="sc">%&gt;%</span> <span class="fu">select</span>(path) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
+<span id="cb6-10"><a href="#cb6-10"></a>paths_v <span class="ot">&lt;-</span> paths_v <span class="sc">%&gt;%</span> <span class="fu">as.character</span>() <span class="sc">%&gt;%</span> <span class="fu">set_names</span>(paths<span class="sc">$</span>year)</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># Read the csv files into a list</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>dat <span class="ot">&lt;-</span> paths_v <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">map</span>( <span class="sc">~</span> <span class="fu">read_excel</span>(.x, <span class="at">sheet =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>())</span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co"># ----------------------- Filter function --------------------------------------</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co"># Filter for older people, don't use 2015</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co"># dat$`2022` %&gt;% glimpse()</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co"># filter(care_home == "Y",</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co"># location_primary_inspection_category = "Residential social care") %&gt;%</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co"># select(location_region, location_local_authority, latest_rating, </span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co"># key_question | domain)</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a></span>
+<span id="cb6-24"><a href="#cb6-24"></a></span>
+<span id="cb6-25"><a href="#cb6-25"></a>qual_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, f1, f2, domain_var, <span class="at">yr =</span> <span class="dv">2016</span>) {</span>
+<span id="cb6-26"><a href="#cb6-26"></a>  <span class="co"># Make filters a quosure</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>  f1 <span class="ot">=</span> <span class="fu">enquo</span>(f1) <span class="co"># Care home</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  f2 <span class="ot">=</span> <span class="fu">enquo</span>(f2) <span class="co"># Residential social care</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>  </span>
+<span id="cb6-30"><a href="#cb6-30"></a>  filt_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!!</span>f1, <span class="sc">!!</span>f2) <span class="sc">%&gt;%</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="fu">select</span>(</span>
+<span id="cb6-32"><a href="#cb6-32"></a>      <span class="at">region =</span> location_region,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>      <span class="at">local_authority =</span> location_local_authority,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>      latest_rating,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>      <span class="at">domain =</span> {</span>
+<span id="cb6-36"><a href="#cb6-36"></a>        {</span>
+<span id="cb6-37"><a href="#cb6-37"></a>          domain_var</span>
+<span id="cb6-38"><a href="#cb6-38"></a>        }</span>
+<span id="cb6-39"><a href="#cb6-39"></a>      }</span>
+<span id="cb6-40"><a href="#cb6-40"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> yr)</span>
+<span id="cb6-42"><a href="#cb6-42"></a>  </span>
+<span id="cb6-43"><a href="#cb6-43"></a>  <span class="fu">return</span>(filt_dat)</span>
+<span id="cb6-44"><a href="#cb6-44"></a>}</span>
+<span id="cb6-45"><a href="#cb6-45"></a></span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="co"># -------------------------- Build table ---------------------------------------</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a></span>
+<span id="cb6-48"><a href="#cb6-48"></a>yr16 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-49"><a href="#cb6-49"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2016</span><span class="st">`</span>,</span>
+<span id="cb6-50"><a href="#cb6-50"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-51"><a href="#cb6-51"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-52"><a href="#cb6-52"></a>  key_question,</span>
+<span id="cb6-53"><a href="#cb6-53"></a>  <span class="at">yr =</span> <span class="dv">2016</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a>)</span>
+<span id="cb6-55"><a href="#cb6-55"></a></span>
+<span id="cb6-56"><a href="#cb6-56"></a>yr17 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-57"><a href="#cb6-57"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2017</span><span class="st">`</span>,</span>
+<span id="cb6-58"><a href="#cb6-58"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-59"><a href="#cb6-59"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-60"><a href="#cb6-60"></a>  key_question,</span>
+<span id="cb6-61"><a href="#cb6-61"></a>  <span class="at">yr =</span> <span class="dv">2017</span></span>
+<span id="cb6-62"><a href="#cb6-62"></a>)</span>
+<span id="cb6-63"><a href="#cb6-63"></a></span>
+<span id="cb6-64"><a href="#cb6-64"></a>yr18 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-65"><a href="#cb6-65"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2018</span><span class="st">`</span>,</span>
+<span id="cb6-66"><a href="#cb6-66"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-67"><a href="#cb6-67"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68"></a>  key_question,</span>
+<span id="cb6-69"><a href="#cb6-69"></a>  <span class="at">yr =</span> <span class="dv">2018</span></span>
+<span id="cb6-70"><a href="#cb6-70"></a>)</span>
+<span id="cb6-71"><a href="#cb6-71"></a></span>
+<span id="cb6-72"><a href="#cb6-72"></a>yr19 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-73"><a href="#cb6-73"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb6-74"><a href="#cb6-74"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-75"><a href="#cb6-75"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-76"><a href="#cb6-76"></a>  domain,</span>
+<span id="cb6-77"><a href="#cb6-77"></a>  <span class="at">yr =</span> <span class="dv">2019</span></span>
+<span id="cb6-78"><a href="#cb6-78"></a>)</span>
+<span id="cb6-79"><a href="#cb6-79"></a></span>
+<span id="cb6-80"><a href="#cb6-80"></a>yr20 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-81"><a href="#cb6-81"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>,</span>
+<span id="cb6-82"><a href="#cb6-82"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-83"><a href="#cb6-83"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-84"><a href="#cb6-84"></a>  domain,</span>
+<span id="cb6-85"><a href="#cb6-85"></a>  <span class="at">yr =</span> <span class="dv">2020</span></span>
+<span id="cb6-86"><a href="#cb6-86"></a>)</span>
+<span id="cb6-87"><a href="#cb6-87"></a></span>
+<span id="cb6-88"><a href="#cb6-88"></a>yr21 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-89"><a href="#cb6-89"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span>,</span>
+<span id="cb6-90"><a href="#cb6-90"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-91"><a href="#cb6-91"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-92"><a href="#cb6-92"></a>  domain,</span>
+<span id="cb6-93"><a href="#cb6-93"></a>  <span class="at">yr =</span> <span class="dv">2021</span></span>
+<span id="cb6-94"><a href="#cb6-94"></a>)</span>
+<span id="cb6-95"><a href="#cb6-95"></a></span>
+<span id="cb6-96"><a href="#cb6-96"></a>yr22 <span class="ot">&lt;-</span> <span class="fu">qual_filter</span>(</span>
+<span id="cb6-97"><a href="#cb6-97"></a>  dat<span class="sc">$</span><span class="st">`</span><span class="at">2022</span><span class="st">`</span>,</span>
+<span id="cb6-98"><a href="#cb6-98"></a>  care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb6-99"><a href="#cb6-99"></a>  location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>,</span>
+<span id="cb6-100"><a href="#cb6-100"></a>  domain,</span>
+<span id="cb6-101"><a href="#cb6-101"></a>  <span class="at">yr =</span> <span class="dv">2022</span></span>
+<span id="cb6-102"><a href="#cb6-102"></a>)</span>
+<span id="cb6-103"><a href="#cb6-103"></a></span>
+<span id="cb6-104"><a href="#cb6-104"></a>yrs <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(yr16, yr17, yr18, yr19, yr20, yr21, yr22) <span class="sc">%&gt;%</span></span>
+<span id="cb6-105"><a href="#cb6-105"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-106"><a href="#cb6-106"></a>    <span class="at">region =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-107"><a href="#cb6-107"></a>      region <span class="sc">==</span> <span class="st">"East of England"</span> <span class="sc">~</span> <span class="st">"East"</span>,</span>
+<span id="cb6-108"><a href="#cb6-108"></a>      region <span class="sc">==</span> <span class="st">"Yorkshire &amp; Humberside"</span> <span class="sc">~</span> <span class="st">"Yorkshire and The Humber"</span>,</span>
+<span id="cb6-109"><a href="#cb6-109"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> region</span>
+<span id="cb6-110"><a href="#cb6-110"></a>    ),</span>
+<span id="cb6-111"><a href="#cb6-111"></a>    <span class="at">local_authority =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-112"><a href="#cb6-112"></a>      local_authority <span class="sc">==</span> <span class="st">"Barking &amp; Dagenham"</span> <span class="sc">~</span></span>
+<span id="cb6-113"><a href="#cb6-113"></a>        <span class="st">"Barking and Dagenham"</span>,</span>
+<span id="cb6-114"><a href="#cb6-114"></a>      local_authority <span class="sc">==</span> <span class="st">"Bath &amp; N E Somerset"</span> <span class="sc">~</span> <span class="st">"Bath and North East Somerset"</span></span>
+<span id="cb6-115"><a href="#cb6-115"></a>      ,</span>
+<span id="cb6-116"><a href="#cb6-116"></a>      local_authority <span class="sc">==</span> <span class="st">"Bournemouth"</span> <span class="sc">~</span></span>
+<span id="cb6-117"><a href="#cb6-117"></a>        <span class="st">"Bournemouth, Christchurch and Poole"</span>,</span>
+<span id="cb6-118"><a href="#cb6-118"></a>      local_authority <span class="sc">==</span> <span class="st">"Poole"</span> <span class="sc">~</span></span>
+<span id="cb6-119"><a href="#cb6-119"></a>        <span class="st">"Bournemouth, Christchurch and Poole"</span>,</span>
+<span id="cb6-120"><a href="#cb6-120"></a>      local_authority <span class="sc">==</span> <span class="st">"Brighton &amp; Hove"</span> <span class="sc">~</span> <span class="st">"Brighton and Hove"</span>,</span>
+<span id="cb6-121"><a href="#cb6-121"></a>      local_authority <span class="sc">==</span> <span class="st">"Bristol, City of"</span> <span class="sc">~</span> <span class="st">"Bristol"</span>,</span>
+<span id="cb6-122"><a href="#cb6-122"></a>      local_authority <span class="sc">==</span> <span class="st">"Hammersmith &amp; Fulham"</span> <span class="sc">~</span> <span class="st">"Hammersmith and Fulham"</span>,</span>
+<span id="cb6-123"><a href="#cb6-123"></a>      local_authority <span class="sc">==</span> <span class="st">"Herefordshire, County of"</span> <span class="sc">~</span> <span class="st">"Herefordshire"</span>,</span>
+<span id="cb6-124"><a href="#cb6-124"></a>      local_authority <span class="sc">==</span> <span class="st">"Kensington &amp; Chelsea"</span> <span class="sc">~</span> <span class="st">"Kensington and Chelsea"</span>,</span>
+<span id="cb6-125"><a href="#cb6-125"></a>      local_authority <span class="sc">==</span> <span class="st">"Kingston upon Hull, City of"</span> <span class="sc">~</span> <span class="st">"Kingston upon Hull"</span>,</span>
+<span id="cb6-126"><a href="#cb6-126"></a>      local_authority <span class="sc">==</span> <span class="st">"Kingston-upon-Thames"</span> <span class="sc">~</span> <span class="st">"Kingston upon Thames"</span>,</span>
+<span id="cb6-127"><a href="#cb6-127"></a>      local_authority <span class="sc">==</span> <span class="st">"Redcar &amp; Cleveland"</span> <span class="sc">~</span> <span class="st">"Redcar and Cleveland"</span>,</span>
+<span id="cb6-128"><a href="#cb6-128"></a>      local_authority <span class="sc">==</span> <span class="st">"Richmond-upon-Thames"</span> <span class="sc">~</span> <span class="st">"Richmond upon Thames"</span>,</span>
+<span id="cb6-129"><a href="#cb6-129"></a>      local_authority <span class="sc">==</span> <span class="st">"St. Helens"</span> <span class="sc">~</span> <span class="st">"St Helens"</span>,</span>
+<span id="cb6-130"><a href="#cb6-130"></a>      local_authority <span class="sc">==</span> <span class="st">"Telford &amp; Wrekin"</span> <span class="sc">~</span> <span class="st">"Telford and Wrekin"</span>,</span>
+<span id="cb6-131"><a href="#cb6-131"></a>      local_authority <span class="sc">==</span> <span class="st">"Windsor &amp; Maidenhead"</span> <span class="sc">~</span> <span class="st">"Windsor and Maidenhead"</span>,</span>
+<span id="cb6-132"><a href="#cb6-132"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> local_authority</span>
+<span id="cb6-133"><a href="#cb6-133"></a>    )</span>
+<span id="cb6-134"><a href="#cb6-134"></a>  )</span>
+<span id="cb6-135"><a href="#cb6-135"></a></span>
+<span id="cb6-136"><a href="#cb6-136"></a><span class="co">#yrs %&gt;% distinct(local_authority) %&gt;% view()</span></span>
+<span id="cb6-137"><a href="#cb6-137"></a></span>
+<span id="cb6-138"><a href="#cb6-138"></a>my_cols <span class="ot">&lt;-</span></span>
+<span id="cb6-139"><a href="#cb6-139"></a>  <span class="fu">unname</span>(sotoncolours<span class="sc">::</span><span class="fu">uos_cols</span>(<span class="st">"horizon3"</span>, <span class="st">"marine1"</span>, <span class="st">"horizon1"</span>, <span class="st">"marine6"</span>, <span class="st">"neutral3"</span>))</span>
+<span id="cb6-140"><a href="#cb6-140"></a></span>
+<span id="cb6-141"><a href="#cb6-141"></a>reg_totals <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span></span>
+<span id="cb6-142"><a href="#cb6-142"></a>  <span class="fu">group_by</span>(region, year, domain) <span class="sc">%&gt;%</span></span>
+<span id="cb6-143"><a href="#cb6-143"></a>  <span class="fu">summarise</span>(<span class="at">regional_total =</span> <span class="fu">n</span>())</span>
+<span id="cb6-144"><a href="#cb6-144"></a></span>
+<span id="cb6-145"><a href="#cb6-145"></a>reg_quality <span class="ot">&lt;-</span></span>
+<span id="cb6-146"><a href="#cb6-146"></a>  yrs <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(region, latest_rating, domain, year) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">regional_rate =</span> <span class="fu">sum</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb6-147"><a href="#cb6-147"></a>  <span class="fu">left_join</span>(reg_totals) <span class="sc">%&gt;%</span></span>
+<span id="cb6-148"><a href="#cb6-148"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-149"><a href="#cb6-149"></a>    <span class="at">region_prop =</span> regional_rate <span class="sc">/</span> regional_total,</span>
+<span id="cb6-150"><a href="#cb6-150"></a>    <span class="at">latest_rating =</span> <span class="fu">factor</span>(</span>
+<span id="cb6-151"><a href="#cb6-151"></a>      latest_rating,</span>
+<span id="cb6-152"><a href="#cb6-152"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb6-153"><a href="#cb6-153"></a>        <span class="st">"Outstanding"</span>,</span>
+<span id="cb6-154"><a href="#cb6-154"></a>        <span class="st">"Good"</span>,</span>
+<span id="cb6-155"><a href="#cb6-155"></a>        <span class="st">"Requires improvement"</span>,</span>
+<span id="cb6-156"><a href="#cb6-156"></a>        <span class="st">"Inadequate"</span>,</span>
+<span id="cb6-157"><a href="#cb6-157"></a>        <span class="st">"Insufficient evidence to rate"</span></span>
+<span id="cb6-158"><a href="#cb6-158"></a>      )</span>
+<span id="cb6-159"><a href="#cb6-159"></a>    )</span>
+<span id="cb6-160"><a href="#cb6-160"></a>  )</span>
+<span id="cb6-161"><a href="#cb6-161"></a></span>
+<span id="cb6-162"><a href="#cb6-162"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb6-163"><a href="#cb6-163"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
+<span id="cb6-164"><a href="#cb6-164"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-165"><a href="#cb6-165"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>, <span class="at">size =</span> <span class="dv">16</span>)))</span>
+<span id="cb6-166"><a href="#cb6-166"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb6-167"><a href="#cb6-167"></a></span>
+<span id="cb6-168"><a href="#cb6-168"></a>qual_plt <span class="ot">&lt;-</span> reg_quality <span class="sc">%&gt;%</span></span>
+<span id="cb6-169"><a href="#cb6-169"></a>  <span class="fu">filter</span>(domain <span class="sc">==</span> <span class="st">"Overall"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-170"><a href="#cb6-170"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> year,</span>
+<span id="cb6-171"><a href="#cb6-171"></a>         <span class="at">Percent =</span> region_prop,</span>
+<span id="cb6-172"><a href="#cb6-172"></a>         <span class="at">Rating =</span> latest_rating) <span class="sc">%&gt;%</span></span>
+<span id="cb6-173"><a href="#cb6-173"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Percent,</span>
+<span id="cb6-174"><a href="#cb6-174"></a>             <span class="at">x =</span> Year,</span>
+<span id="cb6-175"><a href="#cb6-175"></a>             <span class="at">fill =</span> Rating)) <span class="sc">+</span></span>
+<span id="cb6-176"><a href="#cb6-176"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb6-177"><a href="#cb6-177"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_cols) <span class="sc">+</span></span>
+<span id="cb6-178"><a href="#cb6-178"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2016</span>, <span class="dv">2017</span>, <span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>, <span class="dv">2022</span>)) <span class="sc">+</span></span>
+<span id="cb6-179"><a href="#cb6-179"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-180"><a href="#cb6-180"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-181"><a href="#cb6-181"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb6-182"><a href="#cb6-182"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb6-183"><a href="#cb6-183"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region) <span class="sc">+</span></span>
+<span id="cb6-184"><a href="#cb6-184"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional Care Quality Ratings 2016-2022 are stable and mostly Good"</span>)</span>
+<span id="cb6-185"><a href="#cb6-185"></a></span>
+<span id="cb6-186"><a href="#cb6-186"></a></span>
+<span id="cb6-187"><a href="#cb6-187"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb6-188"><a href="#cb6-188"></a>reg_ply <span class="ot">&lt;-</span></span>
+<span id="cb6-189"><a href="#cb6-189"></a>  <span class="fu">ggplotly</span>(qual_plt) <span class="sc">%&gt;%</span> <span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">'h'</span>))</span>
+<span id="cb6-190"><a href="#cb6-190"></a></span>
+<span id="cb6-191"><a href="#cb6-191"></a><span class="fu">library</span>(htmlwidgets)</span>
+<span id="cb6-192"><a href="#cb6-192"></a><span class="fu">saveWidget</span>(reg_ply, <span class="st">"cqc_quality_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="section-7" class="title-slide slide level1 center" data-background-iframe="img/cqc_quality_yrs.html" data-background-interactive="true">
+<h1></h1>
+
+</section>
+<section id="visualising-dementia-care-homes-on-a-map" class="slide level2">
+<h2>Visualising Dementia Care Homes on a map</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># --- Wrangle  CQC data --------------------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/cqc-social-care.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># Filter for active dementia care homes with ratings</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>dem_dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(service_user_band_dementia <span class="sc">==</span> <span class="st">"Y"</span>, care_home <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>               dormant_y_n <span class="sc">==</span> <span class="st">"N"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>               location_latest_overall_rating <span class="sc">!=</span> <span class="st">"Insufficient evidence to rate"</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>                 location_latest_overall_rating <span class="sc">!=</span> <span class="st">"Missing"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>               location_primary_inspection_category <span class="sc">==</span> <span class="st">"Residential social care"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">select</span>(location_id, location_name, location_latest_overall_rating, </span>
+<span id="cb7-12"><a href="#cb7-12"></a>         location_region, location_local_authority, </span>
+<span id="cb7-13"><a href="#cb7-13"></a>         location_latitude, location_longitude)</span>
+<span id="cb7-14"><a href="#cb7-14"></a></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co"># 7,300 homes</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#dem_dat %&gt;% distinct %&gt;% tally()</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co"># --- Wrangle Map data ---------------------------------------------------------</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co"># ONS Local Authority shape file for boundaries</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>la_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/Local_Authority_Districts_(December_2021)_GB_BFC/LAD_DEC_2021_GB_BFC.shp"</span>, </span>
+<span id="cb7-22"><a href="#cb7-22"></a>                 <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="co"># Filter for English local authorities simplify the shape file</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>lae_sf <span class="ot">&lt;-</span> la_sf <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(LAD21CD,<span class="st">"^E"</span>)) <span class="sc">%&gt;%</span> <span class="fu">ms_simplify</span>()</span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># Transform ONS coordinates</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>lae_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(lae_sf,<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co"># Transform CQC coordinates </span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>home_points <span class="ot">&lt;-</span> dem_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb7-29"><a href="#cb7-29"></a>  <span class="fu">select</span>(<span class="at">Name =</span> location_name, <span class="at">Rating =</span> location_latest_overall_rating,</span>
+<span id="cb7-30"><a href="#cb7-30"></a>         <span class="at">LONG =</span> location_longitude, </span>
+<span id="cb7-31"><a href="#cb7-31"></a>         <span class="at">LAT =</span> location_latitude) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">'LONG'</span>, <span class="st">'LAT'</span>), </span>
+<span id="cb7-33"><a href="#cb7-33"></a>           <span class="at">crs =</span> <span class="fu">st_crs</span>(lae_sf)<span class="sc">$</span>proj4string)</span>
+<span id="cb7-34"><a href="#cb7-34"></a></span>
+<span id="cb7-35"><a href="#cb7-35"></a><span class="co"># ------------------ Plot map --------------------------------------------------</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a><span class="co"># Set to interactive</span></span>
+<span id="cb7-37"><a href="#cb7-37"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb7-38"><a href="#cb7-38"></a>dem_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(lae_sf) <span class="sc">+</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a>  <span class="fu">tm_borders</span>() <span class="sc">+</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a>  <span class="fu">tm_shape</span>(home_points) <span class="sc">+</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a>  <span class="fu">tm_dots</span>(<span class="at">col=</span><span class="st">'Rating'</span>) </span>
+<span id="cb7-42"><a href="#cb7-42"></a></span>
+<span id="cb7-43"><a href="#cb7-43"></a><span class="co"># Plot</span></span>
+<span id="cb7-44"><a href="#cb7-44"></a>dem_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="section-8" class="slide level2" data-background-iframe="img/cqc_dementia_homes_map.html" data-background-interactive="true">
+<h2></h2>
+<h4 id="map-of-7300-active-dementia-care-homes-and-their-cqc-rating-april-2022">Map of 7,300 Active Dementia Care Homes and their CQC rating, April 2022</h4>
+<div class="footer">
+<p>Data Source: Care Quality Commission</p>
+</div>
+</section>
+<section id="immediate-thoughts-and-questions" class="slide level2">
+<h2>Immediate thoughts and questions</h2>
+<ul>
+<li>The CQC has an enormous number of service providers to assess.</li>
+<li>Care home bed capacity is in decline, but their is large regional variation.</li>
+<li>Requests for care support from 65+ adults is fairly stable in the short term, but there is variation in requests and in meeting demand across English regions.</li>
+<li>How useful are the ratings if most are ‘Good’?</li>
+</ul>
+<div class="footer footer-default">
+
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="cqc-presentation-2022-04-18_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        setTimeout(function() {
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>

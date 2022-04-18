@@ -1,0 +1,709 @@
+---
+title: "Social Care for Older Adults in England"
+author: "Alistair Bailey"
+date: 2022-04-19
+format:
+  revealjs:
+    theme: [assets/styles.scss]
+    auto-stretch: true
+    code-fold: true
+    code-overflow: wrap
+    execute:
+      echo: true
+      warning: false
+editor: visual
+---
+
+```{r}
+#| label: set-up
+#| echo: false
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse) # data wrangling and plotting
+library(janitor) # cleaning names
+library(glue) # string manipulation
+library(scales) # nice figure scales
+library(sf) # map data manipulation
+library(tmap) # map plotting
+library(rmapshaper)
+library(showtext)
+library(plotly)
+library(sotoncolours)
+# Set palette
+my_cols <- sotoncolours::uos_cols("marine1","horizon3","horizon1")
+# Set ggplot font and theme
+font_add_google('Atkinson Hyperlegible')
+theme_set(theme_minimal(base_size = 22) + 
+            theme(text = element_text(family = "Atkinson Hyperlegible")))
+showtext_auto()
+```
+
+## Aims
+
+An overview of social care provision in England for any interested party.
+
+**What is the range and scope of care services in England, and how is it assessed?**
+
+# 
+### Visualisations focusing on care for older adults:
+
+-   Has the capacity of care services changed in the last decade?
+
+-   Does capacity reflect demand?
+
+-   Has the quality of care changed in the last decade?
+
+-   Mapping dementia care services and their quality ratings.
+
+# 
+### Tools used {.scrollable}
+
+-   R : data wrangling, and visualisation combined with [Quarto](https://quarto.org/) for this presentation.
+
+<!-- +   [Observable](https://observablehq.com/)/D3.js for visualisation. -->
+
+-   Git/Github for version control and hosting.
+
+```{r}
+#| eval: false
+#| label: libraries
+library(tidyverse) # data wrangling and plotting
+library(janitor) # cleaning names
+library(glue) # string manipulation
+library(scales) # nice figure scales
+library(sf) # map data manipulation
+library(tmap) # map plotting
+library(rmapshaper)
+library(showtext)
+library(plotly)
+library(sotoncolours)
+# Set palette
+my_cols <- sotoncolours::uos_cols("marine1","horizon3","horizon1")
+# Set ggplot font and theme
+font_add_google('Atkinson Hyperlegible')
+theme_set(theme_minimal(base_size = 22) + 
+            theme(text = element_text(family = "Atkinson Hyperlegible")))
+showtext_auto()
+```
+
+### Data sources
+
+-   Care Quality Commission (CQC)
+-   National Health Service (NHS)
+-   Office for National Statistics (ONS)
+
+#
+## Social care in England {#overview}
+
+-   Social care is provided by a mixture of private companies and public services, and likewise funded by a mixture of private and public funding.
+
+-   The NHS and Local Authorities are the first points of contact for requesting care, and [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report) produce annual reports about finance and activity.
+
+The [Care Quality Commission](https://www.cqc.org.uk/) is the independent regulator of health and social care in England and are responsible for assessing the quality of these services.
+
+## The CQC has to assess nearly 50,000 care service providers {.center background-color="#005C84"}
+
+::: {.fragment .fade-in}
+Residental social care is by far the biggest catergory.
+:::
+
+#
+## Visualising the present scope and quantity of CQC services {.scrollable}
+
+Using the current CQC data release and R:
+
+1.  Filtered the data for active services.
+2.  Grouped the locations by their Primary Care Catergory and made a tally.
+3.  Then plotted the totals for each catergory as an ordered barplot.
+
+```{r}
+#| label: cqc-services
+#| eval: false
+cqc_2022 <- read.csv("data/cqc-2022.csv") %>% 
+  clean_names()
+
+# Filter for active services and group by primary catergory
+cqc_2022 %>% filter(dormant_y_n == "N") %>% 
+  group_by(location_primary_inspection_category) %>% 
+  tally() %>% 
+  ggplot(aes(x = fct_reorder(location_primary_inspection_category,n),
+             y = n)) +
+  geom_bar(stat = "identity", fill = my_cols[1]) +
+  coord_flip() +
+  xlab("") +
+  ylab("Number of locations") +
+  ggtitle("Number of Active Care Services in each Primary Care Catergory in England in April 2022. N = 49,584") 
+
+# Save figure
+#ggsave("img/cqc-scope-2022.png", width = 8, height = 4, dpi = 300)
+```
+
+#  {background-image="img/cqc-scope-2022.png" background-size="90%"}
+
+::: footer
+Data Source: Care Quality Commission
+:::
+
+## The number of residential care home beds for older people is falling in most regions. {.center background-color="#005C84"}
+
+---
+
+## Visualising the change in care home bed capacity {.scrollable}
+
+I filtered CQC data from 2013 to 2022 for care homes for older people, and then
+created a combined 2013 to 2022 table.
+
+```{r}
+#| label: care-beds-filter
+#| eval: false
+
+# ---------- Filter function ---------------------------------------------------
+beds_filter <- function(dat, f1, f2, f3, f4, beds_var, region_var, 
+                        local_authority_var, yr = 2014) {
+  # Make filters a quosure
+  f1 = enquo(f1) # Care home
+  f2 = enquo(f2) # Sector
+  f3 = enquo(f3) # Older people
+  f4 = enquo(f4) # Remove unspecified
+  
+  filt_dat <- dat %>% filter(!!f1,!!f2,!!f3,!!f4) %>% 
+    select(region = {{region_var}},
+           local_authority = {{local_authority_var}},
+           n_beds = {{beds_var}}) %>%
+    mutate(year = yr)
+  
+  return(filt_dat)
+}
+```
+
+Then: 
+
+1. Calculated the total number of residential care home beds in each region in 2013.
+2. Calculated the total number of beds for each region for each year as a proportion of the 2013 total.
+3. Created an interactive area-line plot using `plotly`.
+
+```{r}
+#| label: change-in-beds
+#| eval: false
+
+yrs <-  read_csv("data/cqc-residential-beds-2012-2020.csv")
+
+beds_2013 <- yrs %>% filter(year == 2013) %>% 
+  group_by(region) %>% 
+  summarise(total_2013 = sum(n_beds))
+
+plt <- yrs %>% filter(year >= 2013) %>%
+  group_by(year,region) %>% 
+  summarise(total_beds = sum(n_beds)) %>% ungroup() %>% 
+  left_join(beds_2013) %>% 
+  group_by(region,year) %>% 
+  mutate(pct_change = ((total_2013/total_beds)-1)*100,
+        'Percent Change' = round(pct_change,2),
+          Year = year) %>% 
+  ggplot(aes(x = Year, y = `Percent Change`)) +
+  geom_line(colour = my_cols[1], size = 1.25) +
+  geom_area(alpha = 0.25) +
+  geom_hline(yintercept = 0, colour = "black") +
+  ggtitle("Regional Change in Residential Care Home Bed Numbers since 2013. Data Source: Care Quality Commission") +
+  xlab("Year") + ylab("% Change in Beds") +
+  facet_wrap(~ region)
+
+ply <- ggplotly(plt, tooltip = c("Year", "Percent Change"))
+
+library(htmlwidgets)
+saveWidget(ply, "res_beds_yrs.html", selfcontained = T)
+```
+
+#  {background-iframe="img/res_beds_yrs.html" background-interactive="true" margin="0.2"}
+
+## Care support requests for older people is stable in the short term, but with large regional variation {.center background-color="#005C84"}
+
+## Visualising care requests {.scrollable}
+
+Using NHS data, I created a table for care requests for 2018-2022:
+
+1. I calculated the 65+ population for each region in 2020 using ONS data
+2. I then calculated the total number of requests for each region
+and scaled the requests per 1,000 people 65+ in each region using 2020 estimates.
+3. I then plotted the scaled requests as bar plots filled according to whether support was provided or not.
+
+```{r}
+#| label: nhs-care-requests
+#| eval: false
+
+# NHS data
+paths <- dir("data/nhs/", full.names = TRUE) %>% 
+  tibble(path = .) %>% 
+  mutate(year = str_extract(path,"(?<=-).{4}"), 
+         full_path = case_when(year == "2018" ~ glue("{path}/SALT Data File.csv"),
+           year == "2019" ~ glue("{path}/SALT Data File (with descriptions).csv"),
+           year == "2020" ~ glue("{path}/SALT Data File (values).csv"),
+                               year == "2021" ~ glue("{path}/SALT Data File (values).csv"))) %>% 
+  filter(year != "2017")
+
+# Set names sample names to create named chr vector
+paths_v <- paths %>% select(full_path) %>% pull()
+paths_v <- paths_v %>% as.character() %>% set_names(paths$year) 
+
+# Read the csv files into a list
+dat <- paths_v %>%
+  map(~ read_csv(.x)) #%>% clean_names())
+
+region_codes <- dat$`2021` %>% filter(GEOGRAPHY_LEVEL == "Region") %>% 
+  distinct(GEOGRAPHY_NAME,REGION_GO_CODE)
+
+# 2021
+sr_21 <- dat$`2021` %>% filter(
+  AgeBand_Key == 3,
+  ClientType_Key == 1,
+  GEOGRAPHY_LEVEL != "England",
+  GEOGRAPHY_LEVEL != "Region",
+  DATA_LEVEL == "ENTRY",
+  SequelToSupportRequest_Key != 99,
+  #ITEMVALUE != ":", ITEMVALUE != "*",
+  ITEMVALUE != "[c]",
+  ITEMVALUE != "[x]",
+  TableType_Key == 2
+) %>%
+  mutate(value = as.numeric(ITEMVALUE)) %>%
+  mutate(
+    care_provided = case_when(
+      SequelToSupportRequest_Key == 4 ~ 0,
+      # Declined
+      SequelToSupportRequest_Key == 5 ~ 0,
+      # Deceased
+      TRUE ~ 1
+    )
+  ) %>% mutate(year = 2021) %>%
+  select(GEOGRAPHY_NAME, value, care_provided, year)
+
+# 2020
+sr_20 <-  dat$`2020` %>% filter(
+  AgeBand_Key == 3,
+  ClientType_Key == 1,
+  GEOGRAPHY_LEVEL != "England",
+  GEOGRAPHY_LEVEL != "Region",
+  DATA_LEVEL == "ENTRY",
+  SequelToSupportRequest_Key != 99,
+  ITEMVALUE != ":",
+  ITEMVALUE != "*",
+  #ITEMVALUE != "[c]", ITEMVALUE != "[x]",
+  TableType_Key == 2
+) %>%
+  mutate(value = as.numeric(ITEMVALUE)) %>%
+  mutate(
+    care_provided = case_when(
+      SequelToSupportRequest_Key == 4 ~ 0,
+      # Declined
+      SequelToSupportRequest_Key == 5 ~ 0,
+      # Deceased
+      TRUE ~ 1
+    )
+  ) %>% mutate(year = 2020) %>%
+  select(GEOGRAPHY_NAME, value, care_provided, year)
+
+# 2019
+sr_19 <- dat$`2019` %>% filter(
+  AgeBand_Key == "65 and over",
+  ClientType_Key == "New Clients",
+  GEOGRAPHY_LEVEL != "England",
+  GEOGRAPHY_LEVEL != "Region",
+  DATA_LEVEL == "ENTRY",
+  SequelToSupportRequest_Key != "99",
+  ITEMVALUE != ":",
+  ITEMVALUE != "*",
+  #ITEMVALUE != "[c]", ITEMVALUE != "[x]",
+  TableType_Key == "Request for Support"
+) %>%
+  mutate(value = as.numeric(ITEMVALUE)) %>%
+  mutate(
+    care_provided = case_when(
+      SequelToSupportRequest_Key == 'No Services Provided' ~ 0,
+      # Declined
+      SequelToSupportRequest_Key == 'No Services Provided - Deceased' ~ 0,
+      # Deceased
+      TRUE ~ 1
+    )
+  ) %>%
+  mutate(year = 2019) %>%
+  select(GEOGRAPHY_NAME, value, care_provided, year)
+
+# 2018
+sr_18 <- dat$`2018` %>% filter(
+  AgeBand_Key == 3,
+  ClientType_Key == 1,
+  GEOGRAPHY_LEVEL != "England",
+  GEOGRAPHY_LEVEL != "Region",
+  DATA_LEVEL == "ENTRY",
+  SequelToSupportRequest_Key != 99,
+  ITEMVALUE != ":",
+  ITEMVALUE != "*",
+  #ITEMVALUE != "[c]", ITEMVALUE != "[x]",
+  TableType_Key == 2
+) %>%
+  mutate(value = as.numeric(ITEMVALUE)) %>%
+  mutate(
+    care_provided = case_when(
+      SequelToSupportRequest_Key == 4 ~ 0,
+      # Declined
+      SequelToSupportRequest_Key == 5 ~ 0,
+      # Deceased
+      TRUE ~ 1
+    )
+  ) %>%
+  mutate(year = 2018) %>% left_join(region_codes) %>%
+  select(GEOGRAPHY_NAME, value, care_provided, year)
+
+# Combine tables
+yrs <- bind_rows(sr_18,sr_19,sr_20,sr_21) 
+# Total regional requests
+yrs_tr <- yrs %>% group_by(GEOGRAPHY_NAME,year) %>% 
+  summarise(yrs_total = sum(value))
+
+# ONS populations for England for ages 65+ in 2020
+pops <-
+  read_csv("data/ons/ons-mid-2020-population-estimates-by-age.csv")
+
+# Calculate regional 65+ totals and recode
+pops_filt <- pops %>% select(1:3, 70:95) %>%
+  filter(Geography == "Region") %>%
+  pivot_longer(cols = 4:28, names_to = "age") %>%
+  group_by(Name, Code, Geography) %>%
+  summarise(pop = sum(value)) %>%
+  mutate(
+    GEOGRAPHY_NAME = case_when(
+      Name == "LONDON" ~ "London",
+      Name == "SOUTH EAST" ~ "South East",
+      Name == "NORTH EAST" ~ "North East",
+      Name == "YORKSHIRE AND THE HUMBER" ~ "Yorkshire and The Humber",
+      Name == "WEST MIDLANDS" ~ "West Midlands",
+      Name == "EAST MIDLANDS" ~ "East Midlands",
+      Name == "EAST" ~ "East of England",
+      Name == "NORTH WEST" ~ "North West",
+      Name == "SOUTH WEST" ~ "South West"
+    )
+  )
+
+
+# Join data, calculate requests relative to 2018 and scale per 1,000 65+
+reqs_outcome <-
+  yrs %>% group_by(GEOGRAPHY_NAME, care_provided, year) %>%
+  summarise(total_outcome = sum(value)) %>%
+  left_join(yrs_tr) %>% left_join(pops_filt) %>%
+  group_by(GEOGRAPHY_NAME, total_outcome, care_provided, year) %>%
+  summarise(
+    per_thou = (sum(total_outcome) / pop) * 1e3,
+    `Care Provided` = case_when(care_provided == 0  ~ "No", TRUE ~ "Yes")
+  )
+
+# Plot requests
+library(showtext)
+font_add_google('Atkinson Hyperlegible')
+theme_set(theme_minimal() +
+            theme(text = element_text(family = "Atkinson Hyperlegible", size = 44)))
+showtext_auto()
+
+library(sotoncolours)
+cols <- unname(uos_cols("marine1", "horizon3"))
+
+reqs_outcome %>%
+  ggplot(aes(x = year, y = per_thou,
+             fill = `Care Provided`)) +
+  geom_bar(position = "stack", stat = "identity") +
+  scale_fill_manual(values = cols) +
+  facet_wrap( ~ GEOGRAPHY_NAME) +
+  xlab("") + ylab("Care Requests per 1000 people 65+") +
+  ggtitle("Regional variation in requests for care 2018-2022") +
+  theme(legend.position = "bottom")
+
+ggsave(
+  "care-requests-2018-2022.png",
+  dpi = 300,
+  width = 13.3,
+  height = 7.7
+)
+```
+
+
+#  {background-image="img/care-requests-2018-2022.png" background-size="80%"}
+
+## Care quality is stable across all regions, and most care homes are rated Good {.center background-color="#005C84"}
+
+## Visualising care quality {.scrollable}
+
+
+
+Using CQC data from 2016-2022, I created a filter for residential care homes to filter
+the yearly tables.
+
+1. 
+
+```{r}
+#| label: cqc-care-quality
+#| eval: false
+
+
+# ---------------------------- Read in xlsx files ------------------------------
+
+# Create a paths vector
+paths <- dir("data/quality/", full.names = TRUE) %>%
+  tibble(path = .) %>% filter(!str_detect(path, "ods")) %>%
+  mutate(year = str_extract(path, "(?<=y-).{4}"))
+
+# Set names sample names to create named chr vector
+paths_v <- paths %>% select(path) %>% pull()
+paths_v <- paths_v %>% as.character() %>% set_names(paths$year)
+
+# Read the csv files into a list
+dat <- paths_v %>%
+  map( ~ read_excel(.x, sheet = 2) %>% clean_names())
+
+# ----------------------- Filter function --------------------------------------
+# Filter for older people, don't use 2015
+# dat$`2022` %>% glimpse()
+# filter(care_home == "Y",
+# location_primary_inspection_category = "Residential social care") %>%
+# select(location_region, location_local_authority, latest_rating, 
+# key_question | domain)
+
+
+qual_filter <- function(dat, f1, f2, domain_var, yr = 2016) {
+  # Make filters a quosure
+  f1 = enquo(f1) # Care home
+  f2 = enquo(f2) # Residential social care
+  
+  filt_dat <- dat %>% filter(!!f1, !!f2) %>%
+    select(
+      region = location_region,
+      local_authority = location_local_authority,
+      latest_rating,
+      domain = {
+        {
+          domain_var
+        }
+      }
+    ) %>%
+    mutate(year = yr)
+  
+  return(filt_dat)
+}
+
+# -------------------------- Build table ---------------------------------------
+
+yr16 <- qual_filter(
+  dat$`2016`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  key_question,
+  yr = 2016
+)
+
+yr17 <- qual_filter(
+  dat$`2017`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  key_question,
+  yr = 2017
+)
+
+yr18 <- qual_filter(
+  dat$`2018`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  key_question,
+  yr = 2018
+)
+
+yr19 <- qual_filter(
+  dat$`2019`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  domain,
+  yr = 2019
+)
+
+yr20 <- qual_filter(
+  dat$`2020`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  domain,
+  yr = 2020
+)
+
+yr21 <- qual_filter(
+  dat$`2021`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  domain,
+  yr = 2021
+)
+
+yr22 <- qual_filter(
+  dat$`2022`,
+  care_home == "Y",
+  location_primary_inspection_category == "Residential social care",
+  domain,
+  yr = 2022
+)
+
+yrs <- bind_rows(yr16, yr17, yr18, yr19, yr20, yr21, yr22) %>%
+  mutate(
+    region = case_when(
+      region == "East of England" ~ "East",
+      region == "Yorkshire & Humberside" ~ "Yorkshire and The Humber",
+      TRUE ~ region
+    ),
+    local_authority = case_when(
+      local_authority == "Barking & Dagenham" ~
+        "Barking and Dagenham",
+      local_authority == "Bath & N E Somerset" ~ "Bath and North East Somerset"
+      ,
+      local_authority == "Bournemouth" ~
+        "Bournemouth, Christchurch and Poole",
+      local_authority == "Poole" ~
+        "Bournemouth, Christchurch and Poole",
+      local_authority == "Brighton & Hove" ~ "Brighton and Hove",
+      local_authority == "Bristol, City of" ~ "Bristol",
+      local_authority == "Hammersmith & Fulham" ~ "Hammersmith and Fulham",
+      local_authority == "Herefordshire, County of" ~ "Herefordshire",
+      local_authority == "Kensington & Chelsea" ~ "Kensington and Chelsea",
+      local_authority == "Kingston upon Hull, City of" ~ "Kingston upon Hull",
+      local_authority == "Kingston-upon-Thames" ~ "Kingston upon Thames",
+      local_authority == "Redcar & Cleveland" ~ "Redcar and Cleveland",
+      local_authority == "Richmond-upon-Thames" ~ "Richmond upon Thames",
+      local_authority == "St. Helens" ~ "St Helens",
+      local_authority == "Telford & Wrekin" ~ "Telford and Wrekin",
+      local_authority == "Windsor & Maidenhead" ~ "Windsor and Maidenhead",
+      TRUE ~ local_authority
+    )
+  )
+
+#yrs %>% distinct(local_authority) %>% view()
+
+my_cols <-
+  unname(sotoncolours::uos_cols("horizon3", "marine1", "horizon1", "marine6", "neutral3"))
+
+reg_totals <- yrs %>%
+  group_by(region, year, domain) %>%
+  summarise(regional_total = n())
+
+reg_quality <-
+  yrs %>% group_by(region, latest_rating, domain, year) %>% summarise(regional_rate = sum(n())) %>%
+  left_join(reg_totals) %>%
+  mutate(
+    region_prop = regional_rate / regional_total,
+    latest_rating = factor(
+      latest_rating,
+      levels = c(
+        "Outstanding",
+        "Good",
+        "Requires improvement",
+        "Inadequate",
+        "Insufficient evidence to rate"
+      )
+    )
+  )
+
+library(showtext)
+font_add_google('Atkinson Hyperlegible')
+theme_set(theme_minimal() +
+            theme(text = element_text(family = "Atkinson Hyperlegible", size = 16)))
+showtext_auto()
+
+qual_plt <- reg_quality %>%
+  filter(domain == "Overall") %>%
+  mutate(Year = year,
+         Percent = region_prop,
+         Rating = latest_rating) %>%
+  ggplot(aes(y = Percent,
+             x = Year,
+             fill = Rating)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_fill_manual(values = my_cols) +
+  scale_x_continuous(breaks = c(2016, 2017, 2018, 2019, 2020, 2021, 2022)) +
+  xlab("") +
+  ylab("") +
+  scale_y_continuous(labels = label_percent()) +
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  facet_wrap(~ region) +
+  ggtitle("Regional Care Quality Ratings 2016-2022 are stable and mostly Good")
+
+
+library(plotly)
+reg_ply <-
+  ggplotly(qual_plt) %>% layout(legend = list(orientation = 'h'))
+
+library(htmlwidgets)
+saveWidget(reg_ply, "cqc_quality_yrs.html", selfcontained = T)
+```
+
+
+#  {background-iframe="img/cqc_quality_yrs.html" background-interactive="true"}
+
+## Visualising Dementia Care Homes on a map
+
+```{r}
+#| label: dementia-map
+#| eval: false
+
+# --- Wrangle  CQC data --------------------------------------------------------
+
+dat <- read_csv("data/cqc-social-care.csv") %>% clean_names()
+
+# Filter for active dementia care homes with ratings
+dem_dat <- dat %>% filter(service_user_band_dementia == "Y", care_home == "Y",
+               dormant_y_n == "N",
+               location_latest_overall_rating != "Insufficient evidence to rate", 
+                 location_latest_overall_rating != "Missing",
+               location_primary_inspection_category == "Residential social care") %>% 
+  select(location_id, location_name, location_latest_overall_rating, 
+         location_region, location_local_authority, 
+         location_latitude, location_longitude)
+
+# 7,300 homes
+#dem_dat %>% distinct %>% tally()
+
+# --- Wrangle Map data ---------------------------------------------------------
+
+# ONS Local Authority shape file for boundaries
+la_sf <- st_read("data/Local_Authority_Districts_(December_2021)_GB_BFC/LAD_DEC_2021_GB_BFC.shp", 
+                 quiet = TRUE)
+# Filter for English local authorities simplify the shape file
+lae_sf <- la_sf %>% filter(str_detect(LAD21CD,"^E")) %>% ms_simplify()
+# Transform ONS coordinates
+lae_sf <- st_transform(lae_sf,"+proj=longlat +ellps=WGS84 +datum=WGS84")
+# Transform CQC coordinates 
+home_points <- dem_dat %>% 
+  select(Name = location_name, Rating = location_latest_overall_rating,
+         LONG = location_longitude, 
+         LAT = location_latitude) %>% 
+  st_as_sf(coords = c('LONG', 'LAT'), 
+           crs = st_crs(lae_sf)$proj4string)
+
+# ------------------ Plot map --------------------------------------------------
+# Set to interactive
+tmap_mode("view")
+dem_map <- tm_shape(lae_sf) +
+  tm_borders() +
+  tm_shape(home_points) +
+  tm_dots(col='Rating') 
+
+# Plot
+dem_map
+```
+
+##  {background-iframe="img/cqc_dementia_homes_map.html" background-interactive="true"}
+
+#### Map of 7,300 Active Dementia Care Homes and their CQC rating, April 2022
+
+::: footer
+Data Source: Care Quality Commission
+:::
+
+## Immediate thoughts and questions
+
+-   The CQC has an enormous number of service providers to assess.
+-   Care home bed capacity is in decline, but their is large regional variation.
+-   Requests for care support from 65+ adults is fairly stable in the short term, but there is variation in requests and in meeting demand across English regions.
+-   How useful are the ratings if most are 'Good'?
