@@ -14,15 +14,11 @@ format:
 editor: visual
 ---
 
-## Aims {#aims}
+## Audience {#aims}
 
 An overview of social care provision in England for any interested party.
 
-**What is the range and scope of care services in England, and how is it assessed?**
-
----
-
-### Focus on care for older adults {#care-for-older-adults}
+### Focus on care for older adults
 
 -   Has the capacity of care services changed in the last decade?
 
@@ -32,9 +28,8 @@ An overview of social care provision in England for any interested party.
 
 -   Mapping dementia care services and their quality ratings.
 
----
 
-### Tools used {#tools .scrollable}
+## Tools {#tools .scrollable .smaller}
 
 -   R : data wrangling, and visualisation combined with [Quarto](https://quarto.org/) for this presentation.
 
@@ -115,7 +110,7 @@ cqc_2022 %>% filter(dormant_y_n == "N") %>%
 #ggsave("img/cqc-scope-2022.png", width = 8, height = 4, dpi = 300)
 ```
 
-#  {#cqc-scope background-image="img/cqc-scope-2022.png" background-size="90%"}
+#  {#cqc-scope background-image="img/cqc-scope-2022.png" background-size="95%"}
 
 ::: footer
 Data Source: Care Quality Commission
@@ -397,7 +392,11 @@ ggsave(
 )
 ```
 
-#  {#care-reqs-plt background-image="img/care-requests-2018-2022.png" background-size="80%"}
+#  {#care-reqs-plt background-image="img/care-requests-2018-2022.png" background-size="85%"}
+
+::: footer
+Data Source: NHS Digital
+:::
 
 ## Care quality is stable across all regions, and most care homes are rated Good {#qual-summ .center background-color="#005C84"}
 
@@ -665,7 +664,7 @@ dem_map
 #### Map of 7,300 Active Dementia Care Homes and their CQC rating, April 2022
 
 ::: footer
-Data Source: Care Quality Commission
+Data Source: Care Quality Commission, ONS
 :::
 
 ## Immediate thoughts and questions {#questions}
