@@ -395,24 +395,19 @@
 <p>An overview of social care provision in England for any interested party.</p>
 <p><strong>What is the range and scope of care services in England, and how is it assessed?</strong></p>
 </section>
-<section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
+<section class="slide level2">
 
-</section>
-<h3 id="visualisations-focusing-on-care-for-older-adults">Visualisations focusing on care for older adults:</h3>
+<h3 id="care-for-older-adults">Focus on care for older adults</h3>
 <ul>
 <li><p>Has the capacity of care services changed in the last decade?</p></li>
 <li><p>Does capacity reflect demand?</p></li>
 <li><p>Has the quality of care changed in the last decade?</p></li>
 <li><p>Mapping dementia care services and their quality ratings.</p></li>
-</ul></section>
-<section>
-<section id="section-1" class="title-slide slide level1 center">
-<h1></h1>
-
+</ul>
 </section>
-<h3 class="scrollable" id="tools-used">Tools used</h3>
+<section class="slide level2">
+
+<h3 class="scrollable" id="tools">Tools used</h3>
 <ul>
 <li>R : data wrangling, and visualisation combined with <a href="https://quarto.org/">Quarto</a> for this presentation.</li>
 </ul>
@@ -442,16 +437,12 @@
 <span id="cb1-17"><a href="#cb1-17"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<h3 id="data-sources">Data sources</h3>
+<h3 id="data">Data sources</h3>
 <ul>
 <li>Care Quality Commission (CQC)</li>
 <li>National Health Service (NHS)</li>
 <li>Office for National Statistics (ONS)</li>
-</ul></section>
-<section>
-<section id="section-2" class="title-slide slide level1 center">
-<h1></h1>
-
+</ul>
 </section>
 <section id="overview" class="slide level2">
 <h2>Social care in England</h2>
@@ -464,21 +455,16 @@
 <section id="the-cqc-has-to-assess-nearly-50000-care-service-providers" class="slide level2 center" data-background-color="#005C84">
 <h2>The CQC has to assess nearly 50,000 care service providers</h2>
 <div class="fragment fade-in">
-<p>Residental social care is by far the biggest catergory.</p>
+<p>Residential social care is by far the biggest category.</p>
 </div>
-</section></section>
-<section>
-<section id="section-3" class="title-slide slide level1 center">
-<h1></h1>
-
 </section>
-<section id="visualising-the-present-scope-and-quantity-of-cqc-services" class="slide level2 scrollable">
+<section id="vis-cqc" class="slide level2 scrollable">
 <h2>Visualising the present scope and quantity of CQC services</h2>
 <p>Using the current CQC data release and R:</p>
 <ol type="1">
 <li>Filtered the data for active services.</li>
-<li>Grouped the locations by their Primary Care Catergory and made a tally.</li>
-<li>Then plotted the totals for each catergory as an ordered barplot.</li>
+<li>Grouped the locations by their Primary Care Category and made a tally.</li>
+<li>Then plotted the totals for each category as an ordered bar-plot.</li>
 </ol>
 <div class="cell">
 <details>
@@ -502,9 +488,9 @@
 <span id="cb2-17"><a href="#cb2-17"></a><span class="co">#ggsave("img/cqc-scope-2022.png", width = 8, height = 4, dpi = 300)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section></section>
+</section>
 <section>
-<section id="section-4" class="title-slide slide level1 center" data-background-image="img/cqc-scope-2022.png" data-background-size="90%">
+<section id="cqc-scope" class="title-slide slide level1 center" data-background-image="img/cqc-scope-2022.png" data-background-size="90%">
 <h1></h1>
 <div class="footer">
 <p>Data Source: Care Quality Commission</p>
@@ -513,7 +499,7 @@
 <section id="the-number-of-residential-care-home-beds-for-older-people-is-falling-in-most-regions." class="slide level2 center" data-background-color="#005C84">
 <h2>The number of residential care home beds for older people is falling in most regions.</h2>
 </section>
-<section id="visualising-the-change-in-care-home-bed-capacity" class="slide level2 scrollable">
+<section id="vis-beds" class="slide level2 scrollable">
 <h2>Visualising the change in care home bed capacity</h2>
 <p>I filtered CQC data from 2013 to 2022 for care homes for older people, and then created a combined 2013 to 2022 table.</p>
 <div class="cell">
@@ -577,14 +563,14 @@
 </div>
 </section></section>
 <section>
-<section id="section-5" class="title-slide slide level1 center" data-background-iframe="img/res_beds_yrs.html" data-background-interactive="true">
+<section id="plotly-beds" class="title-slide slide level1 center" data-background-iframe="img/res_beds_yrs.html" data-background-interactive="true">
 <h1></h1>
 
 </section>
-<section id="care-support-requests-for-older-people-is-stable-in-the-short-term-but-with-large-regional-variation" class="slide level2 center" data-background-color="#005C84">
+<section id="care-reqs" class="slide level2 center" data-background-color="#005C84">
 <h2>Care support requests for older people is stable in the short term, but with large regional variation</h2>
 </section>
-<section id="visualising-care-requests" class="slide level2 scrollable">
+<section id="vis-reqs" class="slide level2 scrollable">
 <h2>Visualising care requests</h2>
 <p>Using NHS data, I created a table for care requests for 2018-2022:</p>
 <ol type="1">
@@ -790,14 +776,14 @@
 </div>
 </section></section>
 <section>
-<section id="section-6" class="title-slide slide level1 center" data-background-image="img/care-requests-2018-2022.png" data-background-size="80%">
+<section id="care-reqs-plt" class="title-slide slide level1 center" data-background-image="img/care-requests-2018-2022.png" data-background-size="80%">
 <h1></h1>
 
 </section>
-<section id="care-quality-is-stable-across-all-regions-and-most-care-homes-are-rated-good" class="slide level2 center" data-background-color="#005C84">
+<section id="qual-summ" class="slide level2 center" data-background-color="#005C84">
 <h2>Care quality is stable across all regions, and most care homes are rated Good</h2>
 </section>
-<section id="visualising-care-quality" class="slide level2 scrollable">
+<section id="vis-qual" class="slide level2 scrollable">
 <h2>Visualising care quality</h2>
 <p>Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables.</p>
 <ol type="1">
@@ -1002,11 +988,11 @@
 </div>
 </section></section>
 <section>
-<section id="section-7" class="title-slide slide level1 center" data-background-iframe="img/cqc_quality_yrs.html" data-background-interactive="true">
+<section id="plotly-qual" class="title-slide slide level1 center" data-background-iframe="img/cqc_quality_yrs.html" data-background-interactive="true">
 <h1></h1>
 
 </section>
-<section id="visualising-dementia-care-homes-on-a-map" class="slide level2">
+<section id="vis-map" class="slide level2">
 <h2>Visualising Dementia Care Homes on a map</h2>
 <div class="cell">
 <details>
@@ -1058,14 +1044,14 @@
 </details>
 </div>
 </section>
-<section id="section-8" class="slide level2" data-background-iframe="img/cqc_dementia_homes_map.html" data-background-interactive="true">
+<section id="dem-map" class="slide level2" data-background-iframe="img/cqc_dementia_homes_map.html" data-background-interactive="true">
 <h2></h2>
 <h4 id="map-of-7300-active-dementia-care-homes-and-their-cqc-rating-april-2022">Map of 7,300 Active Dementia Care Homes and their CQC rating, April 2022</h4>
 <div class="footer">
 <p>Data Source: Care Quality Commission</p>
 </div>
 </section>
-<section id="immediate-thoughts-and-questions" class="slide level2">
+<section id="questions" class="slide level2">
 <h2>Immediate thoughts and questions</h2>
 <ul>
 <li>The CQC has an enormous number of service providers to assess.</li>

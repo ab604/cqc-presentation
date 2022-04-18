@@ -14,14 +14,15 @@ format:
 editor: visual
 ---
 
-## Aims
+## Aims {#aims}
 
 An overview of social care provision in England for any interested party.
 
 **What is the range and scope of care services in England, and how is it assessed?**
 
-# 
-### Visualisations focusing on care for older adults:
+---
+
+### Focus on care for older adults {#care-for-older-adults}
 
 -   Has the capacity of care services changed in the last decade?
 
@@ -31,8 +32,9 @@ An overview of social care provision in England for any interested party.
 
 -   Mapping dementia care services and their quality ratings.
 
-# 
-### Tools used {.scrollable}
+---
+
+### Tools used {#tools .scrollable}
 
 -   R : data wrangling, and visualisation combined with [Quarto](https://quarto.org/) for this presentation.
 
@@ -62,13 +64,12 @@ theme_set(theme_minimal(base_size = 22) +
 showtext_auto()
 ```
 
-### Data sources
+### Data sources {#data}
 
 -   Care Quality Commission (CQC)
 -   National Health Service (NHS)
 -   Office for National Statistics (ONS)
 
-#
 ## Social care in England {#overview}
 
 -   Social care is provided by a mixture of private companies and public services, and likewise funded by a mixture of private and public funding.
@@ -80,17 +81,17 @@ The [Care Quality Commission](https://www.cqc.org.uk/) is the independent regula
 ## The CQC has to assess nearly 50,000 care service providers {.center background-color="#005C84"}
 
 ::: {.fragment .fade-in}
-Residental social care is by far the biggest catergory.
+Residential social care is by far the biggest category.
 :::
 
-#
-## Visualising the present scope and quantity of CQC services {.scrollable}
+
+## Visualising the present scope and quantity of CQC services {#vis-cqc .scrollable}
 
 Using the current CQC data release and R:
 
 1.  Filtered the data for active services.
-2.  Grouped the locations by their Primary Care Catergory and made a tally.
-3.  Then plotted the totals for each catergory as an ordered barplot.
+2.  Grouped the locations by their Primary Care Category and made a tally.
+3.  Then plotted the totals for each category as an ordered bar-plot.
 
 ```{r}
 #| label: cqc-services
@@ -114,7 +115,7 @@ cqc_2022 %>% filter(dormant_y_n == "N") %>%
 #ggsave("img/cqc-scope-2022.png", width = 8, height = 4, dpi = 300)
 ```
 
-#  {background-image="img/cqc-scope-2022.png" background-size="90%"}
+#  {#cqc-scope background-image="img/cqc-scope-2022.png" background-size="90%"}
 
 ::: footer
 Data Source: Care Quality Commission
@@ -122,12 +123,9 @@ Data Source: Care Quality Commission
 
 ## The number of residential care home beds for older people is falling in most regions. {.center background-color="#005C84"}
 
----
+## Visualising the change in care home bed capacity {#vis-beds .scrollable}
 
-## Visualising the change in care home bed capacity {.scrollable}
-
-I filtered CQC data from 2013 to 2022 for care homes for older people, and then
-created a combined 2013 to 2022 table.
+I filtered CQC data from 2013 to 2022 for care homes for older people, and then created a combined 2013 to 2022 table.
 
 ```{r}
 #| label: care-beds-filter
@@ -152,11 +150,11 @@ beds_filter <- function(dat, f1, f2, f3, f4, beds_var, region_var,
 }
 ```
 
-Then: 
+Then:
 
-1. Calculated the total number of residential care home beds in each region in 2013.
-2. Calculated the total number of beds for each region for each year as a proportion of the 2013 total.
-3. Created an interactive area-line plot using `plotly`.
+1.  Calculated the total number of residential care home beds in each region in 2013.
+2.  Calculated the total number of beds for each region for each year as a proportion of the 2013 total.
+3.  Created an interactive area-line plot using `plotly`.
 
 ```{r}
 #| label: change-in-beds
@@ -190,18 +188,17 @@ library(htmlwidgets)
 saveWidget(ply, "res_beds_yrs.html", selfcontained = T)
 ```
 
-#  {background-iframe="img/res_beds_yrs.html" background-interactive="true"}
+#  {#plotly-beds background-iframe="img/res_beds_yrs.html" background-interactive="true"}
 
-## Care support requests for older people is stable in the short term, but with large regional variation {.center background-color="#005C84"}
+## Care support requests for older people is stable in the short term, but with large regional variation {#care-reqs .center background-color="#005C84"}
 
-## Visualising care requests {.scrollable}
+## Visualising care requests {#vis-reqs .scrollable}
 
 Using NHS data, I created a table for care requests for 2018-2022:
 
-1. I calculated the 65+ population for each region in 2020 using ONS data
-2. I then calculated the total number of requests for each region
-and scaled the requests per 1,000 people 65+ in each region using 2020 estimates.
-3. I then plotted the scaled requests as bar plots filled according to whether support was provided or not.
+1.  I calculated the 65+ population for each region in 2020 using ONS data
+2.  I then calculated the total number of requests for each region and scaled the requests per 1,000 people 65+ in each region using 2020 estimates.
+3.  I then plotted the scaled requests as bar plots filled according to whether support was provided or not.
 
 ```{r}
 #| label: nhs-care-requests
@@ -400,19 +397,15 @@ ggsave(
 )
 ```
 
+#  {#care-reqs-plt background-image="img/care-requests-2018-2022.png" background-size="80%"}
 
-#  {background-image="img/care-requests-2018-2022.png" background-size="80%"}
+## Care quality is stable across all regions, and most care homes are rated Good {#qual-summ .center background-color="#005C84"}
 
-## Care quality is stable across all regions, and most care homes are rated Good {.center background-color="#005C84"}
+## Visualising care quality {#vis-qual .scrollable}
 
-## Visualising care quality {.scrollable}
+Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables.
 
-
-
-Using CQC data from 2016-2022, I created a filter for residential care homes to filter
-the yearly tables.
-
-1. 
+1.  
 
 ```{r}
 #| label: cqc-care-quality
@@ -613,10 +606,9 @@ library(htmlwidgets)
 saveWidget(reg_ply, "cqc_quality_yrs.html", selfcontained = T)
 ```
 
+#  {#plotly-qual background-iframe="img/cqc_quality_yrs.html" background-interactive="true"}
 
-#  {background-iframe="img/cqc_quality_yrs.html" background-interactive="true"}
-
-## Visualising Dementia Care Homes on a map
+## Visualising Dementia Care Homes on a map {#vis-map}
 
 ```{r}
 #| label: dementia-map
@@ -668,7 +660,7 @@ dem_map <- tm_shape(lae_sf) +
 dem_map
 ```
 
-##  {background-iframe="img/cqc_dementia_homes_map.html" background-interactive="true"}
+##  {#dem-map background-iframe="img/cqc_dementia_homes_map.html" background-interactive="true"}
 
 #### Map of 7,300 Active Dementia Care Homes and their CQC rating, April 2022
 
@@ -676,7 +668,7 @@ dem_map
 Data Source: Care Quality Commission
 :::
 
-## Immediate thoughts and questions
+## Immediate thoughts and questions {#questions}
 
 -   The CQC has an enormous number of service providers to assess.
 -   Care home bed capacity is in decline, but their is large regional variation.
