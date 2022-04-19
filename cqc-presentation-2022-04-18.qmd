@@ -20,11 +20,11 @@ An overview of social care provision in England for any interested party.
 
 ### Focus on care for older adults
 
--   Has the capacity of care services changed in the last decade?
+-   Has residential care home capacity changed in the last decade?
 
 -   Does capacity reflect demand?
 
--   Has the quality of care changed in the last decade?
+-   Has the quality of residential care home changed in recent years?
 
 -   Mapping dementia care services and their quality ratings.
 
@@ -71,7 +71,7 @@ showtext_auto()
 
 -   The NHS and Local Authorities are the first points of contact for requesting care, and [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report) produce annual reports about finance and activity.
 
-The [Care Quality Commission](https://www.cqc.org.uk/) is the independent regulator of health and social care in England and are responsible for assessing the quality of these services.
+-   Since 2009, the [Care Quality Commission](https://www.cqc.org.uk/) are the independent regulator of health and social care in England and are responsible for assessing the quality of these services.
 
 ## The CQC has to assess nearly 50,000 care service providers {.center background-color="#005C84"}
 
@@ -116,11 +116,11 @@ cqc_2022 %>% filter(dormant_y_n == "N") %>%
 Data Source: Care Quality Commission
 :::
 
-## The number of residential care home beds for older people is falling in most regions. {.center background-color="#005C84"}
+## Since 2013, there has been a rise in the overall number of residential care home beds for older people, but not in all regions. {.center background-color="#005C84"}
 
 ## Visualising the change in care home bed capacity {#vis-beds .scrollable}
 
-I filtered CQC data from 2013 to 2022 for care homes for older people, and then created a combined 2013 to 2022 table.
+I filtered CQC data from 2013 to 2020 for care homes for older people, and then created a combined 2013 to 2020 table.
 
 ```{r}
 #| label: care-beds-filter
@@ -148,37 +148,62 @@ beds_filter <- function(dat, f1, f2, f3, f4, beds_var, region_var,
 Then:
 
 1.  Calculated the total number of residential care home beds in each region in 2013.
-2.  Calculated the total number of beds for each region for each year as a proportion of the 2013 total.
-3.  Created an interactive area-line plot using `plotly`.
+2.  Calculated the total number of beds for each region for 2013-2020 as a proportion of the 2013 total.
+3. Calculate change in beds since 2013 for all regions in England. 
+4.  Created an interactive area-line plot using `plotly`.
 
 ```{r}
 #| label: change-in-beds
 #| eval: false
 
+# Set palette
+my_cols <- sotoncolours::uos_cols("marine1","horizon3","horizon1")
+# Set ggplot font and theme
+font_add_google('Atkinson Hyperlegible')
+theme_set(theme_minimal(base_size = 18) + 
+            theme(text = element_text(family = "Atkinson Hyperlegible")))
+showtext_auto()
+
+# Read in aggregated CQC data
 yrs <-  read_csv("data/cqc-residential-beds-2012-2020.csv")
 
+# Get the 2013 totals
 beds_2013 <- yrs %>% filter(year == 2013) %>% 
   group_by(region) %>% 
   summarise(total_2013 = sum(n_beds))
-
+# Aggregate all regions 2013 and bind rows
+all_2013 <- beds_2013 %>% summarise(total_2013 = sum(total_2013)) %>% 
+  mutate(region = "All Regions") %>% bind_rows(beds_2013)
+# Aggregate all regions per year
+all_regs <- yrs %>% filter(year >= 2013) %>%
+  group_by(year) %>% 
+  summarise(total_beds = sum(n_beds)) %>% 
+  mutate(region = "All Regions") 
+# Calculate regional yearly totals, combine with all regions and
+# then calculate as a proportion of 2013 totals, and plot.
 plt <- yrs %>% filter(year >= 2013) %>%
   group_by(year,region) %>% 
   summarise(total_beds = sum(n_beds)) %>% ungroup() %>% 
-  left_join(beds_2013) %>% 
+  bind_rows(all_regs) %>% 
+  left_join(all_2013) %>% 
   group_by(region,year) %>% 
-  mutate(pct_change = ((total_2013/total_beds)-1)*100,
-        'Percent Change' = round(pct_change,2),
-          Year = year) %>% 
+  mutate(pct_change = ((total_beds/total_2013)-1)*100,
+         'Percent Change' = round(pct_change,2),
+         Year = year) %>% 
   ggplot(aes(x = Year, y = `Percent Change`)) +
   geom_line(colour = my_cols[1], size = 1.25) +
   geom_area(alpha = 0.25) +
   geom_hline(yintercept = 0, colour = "black") +
-  ggtitle("Regional Change in Residential Care Home Bed Numbers since 2013. Data Source: Care Quality Commission") +
+  ggtitle("Change in Care Home Bed Numbers 2013-2020. Data Source: Care Quality Commission") +
   xlab("Year") + ylab("% Change in Beds") +
-  facet_wrap(~ region)
+  scale_x_continuous(breaks = c(2013,2015, 2017,2019)) +
+  facet_wrap(~ region, ncol=5)
 
+# Create interactive plot
+library(plotly)
 ply <- ggplotly(plt, tooltip = c("Year", "Percent Change"))
-
+ply
+# Save interactive
 library(htmlwidgets)
 saveWidget(ply, "res_beds_yrs.html", selfcontained = T)
 ```
@@ -395,16 +420,18 @@ ggsave(
 #  {#care-reqs-plt background-image="img/care-requests-2018-2022.png" background-size="85%"}
 
 ::: footer
-Data Source: NHS Digital
+Data Source: NHS Digital, ONS
 :::
 
 ## Care quality is stable across all regions, and most care homes are rated Good {#qual-summ .center background-color="#005C84"}
 
 ## Visualising care quality {#vis-qual .scrollable}
 
-Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables.
+Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables, and then created combined tables.
 
-1.  
+1. There are five quality ratings: Outstanding, Good, Requires improvement, Inadequate and Insufficient to rate. 
+2. I calculated the yearly ratings for each region and the proportion of each rating for each region in each year.
+3. I then plotted stacked bar plots of for the regional ratings for each year.
 
 ```{r}
 #| label: cqc-care-quality
@@ -556,7 +583,8 @@ reg_totals <- yrs %>%
   summarise(regional_total = n())
 
 reg_quality <-
-  yrs %>% group_by(region, latest_rating, domain, year) %>% summarise(regional_rate = sum(n())) %>%
+  yrs %>% group_by(region, latest_rating, domain, year) %>% 
+  summarise(regional_rate = sum(n())) %>%
   left_join(reg_totals) %>%
   mutate(
     region_prop = regional_rate / regional_total,
@@ -578,24 +606,21 @@ theme_set(theme_minimal() +
             theme(text = element_text(family = "Atkinson Hyperlegible", size = 16)))
 showtext_auto()
 
-qual_plt <- reg_quality %>%
+qual_plt <- reg_quality %>% 
   filter(domain == "Overall") %>%
-  mutate(Year = year,
-         Percent = region_prop,
-         Rating = latest_rating) %>%
-  ggplot(aes(y = Percent,
-             x = Year,
+  mutate(Year = year, Proportion = region_prop, Rating = latest_rating) %>% 
+  ggplot(aes(y = Proportion, 
+             x = Year, 
              fill = Rating)) +
   geom_bar(stat = "identity", position = "stack") +
   scale_fill_manual(values = my_cols) +
-  scale_x_continuous(breaks = c(2016, 2017, 2018, 2019, 2020, 2021, 2022)) +
+  scale_x_continuous(breaks = c(2016,2017,2018,2019,2020,2021,2022)) +
   xlab("") +
   ylab("") +
   scale_y_continuous(labels = label_percent()) +
-  theme(legend.position = "bottom", legend.title = element_blank()) +
-  facet_wrap(~ region) +
+  theme(legend.position = "bottom",legend.title = element_blank()) +
+  facet_wrap( ~ region) +
   ggtitle("Regional Care Quality Ratings 2016-2022 are stable and mostly Good")
-
 
 library(plotly)
 reg_ply <-
@@ -607,7 +632,13 @@ saveWidget(reg_ply, "cqc_quality_yrs.html", selfcontained = T)
 
 #  {#plotly-qual background-iframe="img/cqc_quality_yrs.html" background-interactive="true"}
 
-## Visualising Dementia Care Homes on a map {#vis-map}
+## Visualising Dementia Care Homes on a map {#vis-map .scrollable}
+
+1. I used the ONS local authority shape file to provide the map boundaries.
+2. From the 2022 CQC data I filtered for dementia care homes and extracted their ratings and
+coordinates.
+3. I transformed the coordinates of the ONS and CQC data into the same projection system, and
+then plotted using the `tmap` package to create an interactive map.
 
 ```{r}
 #| label: dementia-map
@@ -670,6 +701,6 @@ Data Source: Care Quality Commission, ONS
 ## Immediate thoughts and questions {#questions}
 
 -   The CQC has an enormous number of service providers to assess.
--   Care home bed capacity is in decline, but their is large regional variation.
+-   Care home bed capacity is increasing, but their is large regional variation.
 -   Requests for care support from 65+ adults is fairly stable in the short term, but there is variation in requests and in meeting demand across English regions.
 -   How useful are the ratings if most are 'Good'?

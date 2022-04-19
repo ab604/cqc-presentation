@@ -395,9 +395,9 @@
 <p>An overview of social care provision in England for any interested party.</p>
 <h3 id="focus-on-care-for-older-adults">Focus on care for older adults</h3>
 <ul>
-<li><p>Has the capacity of care services changed in the last decade?</p></li>
+<li><p>Has residential care home capacity changed in the last decade?</p></li>
 <li><p>Does capacity reflect demand?</p></li>
-<li><p>Has the quality of care changed in the last decade?</p></li>
+<li><p>Has the quality of residential care home changed in recent years?</p></li>
 <li><p>Mapping dementia care services and their quality ratings.</p></li>
 </ul>
 </section>
@@ -444,8 +444,8 @@
 <ul>
 <li><p>Social care is provided by a mixture of private companies and public services, and likewise funded by a mixture of private and public funding.</p></li>
 <li><p>The NHS and Local Authorities are the first points of contact for requesting care, and <a href="https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report">NHS Digital</a> produce annual reports about finance and activity.</p></li>
+<li><p>Since 2009, the <a href="https://www.cqc.org.uk/">Care Quality Commission</a> are the independent regulator of health and social care in England and are responsible for assessing the quality of these services.</p></li>
 </ul>
-<p>The <a href="https://www.cqc.org.uk/">Care Quality Commission</a> is the independent regulator of health and social care in England and are responsible for assessing the quality of these services.</p>
 </section>
 <section id="the-cqc-has-to-assess-nearly-50000-care-service-providers" class="slide level2 center" data-background-color="#005C84">
 <h2>The CQC has to assess nearly 50,000 care service providers</h2>
@@ -491,12 +491,12 @@
 <p>Data Source: Care Quality Commission</p>
 </div>
 </section>
-<section id="the-number-of-residential-care-home-beds-for-older-people-is-falling-in-most-regions." class="slide level2 center" data-background-color="#005C84">
-<h2>The number of residential care home beds for older people is falling in most regions.</h2>
+<section id="since-2013-there-has-been-a-rise-in-the-overall-number-of-residential-care-home-beds-for-older-people-but-not-in-all-regions." class="slide level2 center" data-background-color="#005C84">
+<h2>Since 2013, there has been a rise in the overall number of residential care home beds for older people, but not in all regions.</h2>
 </section>
 <section id="vis-beds" class="slide level2 scrollable">
 <h2>Visualising the change in care home bed capacity</h2>
-<p>I filtered CQC data from 2013 to 2022 for care homes for older people, and then created a combined 2013 to 2022 table.</p>
+<p>I filtered CQC data from 2013 to 2020 for care homes for older people, and then created a combined 2013 to 2020 table.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -522,38 +522,63 @@
 <p>Then:</p>
 <ol type="1">
 <li>Calculated the total number of residential care home beds in each region in 2013.</li>
-<li>Calculated the total number of beds for each region for each year as a proportion of the 2013 total.</li>
+<li>Calculated the total number of beds for each region for 2013-2020 as a proportion of the 2013 total.</li>
+<li>Calculate change in beds since 2013 for all regions in England.</li>
 <li>Created an interactive area-line plot using <code>plotly</code>.</li>
 </ol>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>yrs <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">"data/cqc-residential-beds-2012-2020.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>beds_2013 <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">summarise</span>(<span class="at">total_2013 =</span> <span class="fu">sum</span>(n_beds))</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>plt <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">group_by</span>(year,region) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">summarise</span>(<span class="at">total_beds =</span> <span class="fu">sum</span>(n_beds)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">left_join</span>(beds_2013) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">group_by</span>(region,year) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">mutate</span>(<span class="at">pct_change =</span> ((total_2013<span class="sc">/</span>total_beds)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb4-13"><a href="#cb4-13"></a>        <span class="st">'Percent Change'</span> <span class="ot">=</span> <span class="fu">round</span>(pct_change,<span class="dv">2</span>),</span>
-<span id="cb4-14"><a href="#cb4-14"></a>          <span class="at">Year =</span> year) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> <span class="st">`</span><span class="at">Percent Change</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> my_cols[<span class="dv">1</span>], <span class="at">size =</span> <span class="fl">1.25</span>) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional Change in Residential Care Home Bed Numbers since 2013. Data Source: Care Quality Commission"</span>) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"% Change in Beds"</span>) <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region)</span>
-<span id="cb4-22"><a href="#cb4-22"></a></span>
-<span id="cb4-23"><a href="#cb4-23"></a>ply <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(plt, <span class="at">tooltip =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Percent Change"</span>))</span>
-<span id="cb4-24"><a href="#cb4-24"></a></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="fu">saveWidget</span>(ply, <span class="st">"res_beds_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Set palette</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>my_cols <span class="ot">&lt;-</span> sotoncolours<span class="sc">::</span><span class="fu">uos_cols</span>(<span class="st">"marine1"</span>,<span class="st">"horizon3"</span>,<span class="st">"horizon1"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Set ggplot font and theme</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>)))</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Read in aggregated CQC data</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>yrs <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">"data/cqc-residential-beds-2012-2020.csv"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co"># Get the 2013 totals</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>beds_2013 <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">summarise</span>(<span class="at">total_2013 =</span> <span class="fu">sum</span>(n_beds))</span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># Aggregate all regions 2013 and bind rows</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>all_2013 <span class="ot">&lt;-</span> beds_2013 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">total_2013 =</span> <span class="fu">sum</span>(total_2013)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="st">"All Regions"</span>) <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>(beds_2013)</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co"># Aggregate all regions per year</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>all_regs <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="#cb4-22"></a>  <span class="fu">summarise</span>(<span class="at">total_beds =</span> <span class="fu">sum</span>(n_beds)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-23"><a href="#cb4-23"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="st">"All Regions"</span>) </span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Calculate regional yearly totals, combine with all regions and</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co"># then calculate as a proportion of 2013 totals, and plot.</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a>plt <span class="ot">&lt;-</span> yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>  <span class="fu">group_by</span>(year,region) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-28"><a href="#cb4-28"></a>  <span class="fu">summarise</span>(<span class="at">total_beds =</span> <span class="fu">sum</span>(n_beds)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-29"><a href="#cb4-29"></a>  <span class="fu">bind_rows</span>(all_regs) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-30"><a href="#cb4-30"></a>  <span class="fu">left_join</span>(all_2013) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-31"><a href="#cb4-31"></a>  <span class="fu">group_by</span>(region,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-32"><a href="#cb4-32"></a>  <span class="fu">mutate</span>(<span class="at">pct_change =</span> ((total_beds<span class="sc">/</span>total_2013)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb4-33"><a href="#cb4-33"></a>         <span class="st">'Percent Change'</span> <span class="ot">=</span> <span class="fu">round</span>(pct_change,<span class="dv">2</span>),</span>
+<span id="cb4-34"><a href="#cb4-34"></a>         <span class="at">Year =</span> year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-35"><a href="#cb4-35"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> <span class="st">`</span><span class="at">Percent Change</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> my_cols[<span class="dv">1</span>], <span class="at">size =</span> <span class="fl">1.25</span>) <span class="sc">+</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>  <span class="fu">ggtitle</span>(<span class="st">"Change in Care Home Bed Numbers 2013-2020. Data Source: Care Quality Commission"</span>) <span class="sc">+</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"% Change in Beds"</span>) <span class="sc">+</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2013</span>,<span class="dv">2015</span>, <span class="dv">2017</span>,<span class="dv">2019</span>)) <span class="sc">+</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region, <span class="at">ncol=</span><span class="dv">5</span>)</span>
+<span id="cb4-43"><a href="#cb4-43"></a></span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="co"># Create interactive plot</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-46"><a href="#cb4-46"></a>ply <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(plt, <span class="at">tooltip =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Percent Change"</span>))</span>
+<span id="cb4-47"><a href="#cb4-47"></a>ply</span>
+<span id="cb4-48"><a href="#cb4-48"></a><span class="co"># Save interactive</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a><span class="fu">library</span>(htmlwidgets)</span>
+<span id="cb4-50"><a href="#cb4-50"></a><span class="fu">saveWidget</span>(ply, <span class="st">"res_beds_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section></section>
@@ -774,7 +799,7 @@
 <section id="care-reqs-plt" class="title-slide slide level1 center" data-background-image="img/care-requests-2018-2022.png" data-background-size="85%">
 <h1></h1>
 <div class="footer">
-<p>Data Source: NHS Digital</p>
+<p>Data Source: NHS Digital, ONS</p>
 </div>
 </section>
 <section id="qual-summ" class="slide level2 center" data-background-color="#005C84">
@@ -782,9 +807,11 @@
 </section>
 <section id="vis-qual" class="slide level2 scrollable">
 <h2>Visualising care quality</h2>
-<p>Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables.</p>
+<p>Using CQC data from 2016-2022, I created a filter for residential care homes to filter the yearly tables, and then created combined tables.</p>
 <ol type="1">
-<li></li>
+<li>There are five quality ratings: Outstanding, Good, Requires improvement, Inadequate and Insufficient to rate.</li>
+<li>I calculated the yearly ratings for each region and the proportion of each rating for each region in each year.</li>
+<li>I then plotted stacked bar plots of for the regional ratings for each year.</li>
 </ol>
 <div class="cell">
 <details>
@@ -934,53 +961,51 @@
 <span id="cb6-143"><a href="#cb6-143"></a>  <span class="fu">summarise</span>(<span class="at">regional_total =</span> <span class="fu">n</span>())</span>
 <span id="cb6-144"><a href="#cb6-144"></a></span>
 <span id="cb6-145"><a href="#cb6-145"></a>reg_quality <span class="ot">&lt;-</span></span>
-<span id="cb6-146"><a href="#cb6-146"></a>  yrs <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(region, latest_rating, domain, year) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">regional_rate =</span> <span class="fu">sum</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb6-147"><a href="#cb6-147"></a>  <span class="fu">left_join</span>(reg_totals) <span class="sc">%&gt;%</span></span>
-<span id="cb6-148"><a href="#cb6-148"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-149"><a href="#cb6-149"></a>    <span class="at">region_prop =</span> regional_rate <span class="sc">/</span> regional_total,</span>
-<span id="cb6-150"><a href="#cb6-150"></a>    <span class="at">latest_rating =</span> <span class="fu">factor</span>(</span>
-<span id="cb6-151"><a href="#cb6-151"></a>      latest_rating,</span>
-<span id="cb6-152"><a href="#cb6-152"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
-<span id="cb6-153"><a href="#cb6-153"></a>        <span class="st">"Outstanding"</span>,</span>
-<span id="cb6-154"><a href="#cb6-154"></a>        <span class="st">"Good"</span>,</span>
-<span id="cb6-155"><a href="#cb6-155"></a>        <span class="st">"Requires improvement"</span>,</span>
-<span id="cb6-156"><a href="#cb6-156"></a>        <span class="st">"Inadequate"</span>,</span>
-<span id="cb6-157"><a href="#cb6-157"></a>        <span class="st">"Insufficient evidence to rate"</span></span>
-<span id="cb6-158"><a href="#cb6-158"></a>      )</span>
-<span id="cb6-159"><a href="#cb6-159"></a>    )</span>
-<span id="cb6-160"><a href="#cb6-160"></a>  )</span>
-<span id="cb6-161"><a href="#cb6-161"></a></span>
-<span id="cb6-162"><a href="#cb6-162"></a><span class="fu">library</span>(showtext)</span>
-<span id="cb6-163"><a href="#cb6-163"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
-<span id="cb6-164"><a href="#cb6-164"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-165"><a href="#cb6-165"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>, <span class="at">size =</span> <span class="dv">16</span>)))</span>
-<span id="cb6-166"><a href="#cb6-166"></a><span class="fu">showtext_auto</span>()</span>
-<span id="cb6-167"><a href="#cb6-167"></a></span>
-<span id="cb6-168"><a href="#cb6-168"></a>qual_plt <span class="ot">&lt;-</span> reg_quality <span class="sc">%&gt;%</span></span>
-<span id="cb6-169"><a href="#cb6-169"></a>  <span class="fu">filter</span>(domain <span class="sc">==</span> <span class="st">"Overall"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-170"><a href="#cb6-170"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> year,</span>
-<span id="cb6-171"><a href="#cb6-171"></a>         <span class="at">Percent =</span> region_prop,</span>
-<span id="cb6-172"><a href="#cb6-172"></a>         <span class="at">Rating =</span> latest_rating) <span class="sc">%&gt;%</span></span>
-<span id="cb6-173"><a href="#cb6-173"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Percent,</span>
-<span id="cb6-174"><a href="#cb6-174"></a>             <span class="at">x =</span> Year,</span>
-<span id="cb6-175"><a href="#cb6-175"></a>             <span class="at">fill =</span> Rating)) <span class="sc">+</span></span>
-<span id="cb6-176"><a href="#cb6-176"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
-<span id="cb6-177"><a href="#cb6-177"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_cols) <span class="sc">+</span></span>
-<span id="cb6-178"><a href="#cb6-178"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2016</span>, <span class="dv">2017</span>, <span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>, <span class="dv">2022</span>)) <span class="sc">+</span></span>
-<span id="cb6-179"><a href="#cb6-179"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb6-180"><a href="#cb6-180"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb6-181"><a href="#cb6-181"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
-<span id="cb6-182"><a href="#cb6-182"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb6-183"><a href="#cb6-183"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region) <span class="sc">+</span></span>
-<span id="cb6-184"><a href="#cb6-184"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional Care Quality Ratings 2016-2022 are stable and mostly Good"</span>)</span>
-<span id="cb6-185"><a href="#cb6-185"></a></span>
-<span id="cb6-186"><a href="#cb6-186"></a></span>
-<span id="cb6-187"><a href="#cb6-187"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb6-188"><a href="#cb6-188"></a>reg_ply <span class="ot">&lt;-</span></span>
-<span id="cb6-189"><a href="#cb6-189"></a>  <span class="fu">ggplotly</span>(qual_plt) <span class="sc">%&gt;%</span> <span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">'h'</span>))</span>
-<span id="cb6-190"><a href="#cb6-190"></a></span>
-<span id="cb6-191"><a href="#cb6-191"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb6-192"><a href="#cb6-192"></a><span class="fu">saveWidget</span>(reg_ply, <span class="st">"cqc_quality_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-146"><a href="#cb6-146"></a>  yrs <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(region, latest_rating, domain, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-147"><a href="#cb6-147"></a>  <span class="fu">summarise</span>(<span class="at">regional_rate =</span> <span class="fu">sum</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb6-148"><a href="#cb6-148"></a>  <span class="fu">left_join</span>(reg_totals) <span class="sc">%&gt;%</span></span>
+<span id="cb6-149"><a href="#cb6-149"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-150"><a href="#cb6-150"></a>    <span class="at">region_prop =</span> regional_rate <span class="sc">/</span> regional_total,</span>
+<span id="cb6-151"><a href="#cb6-151"></a>    <span class="at">latest_rating =</span> <span class="fu">factor</span>(</span>
+<span id="cb6-152"><a href="#cb6-152"></a>      latest_rating,</span>
+<span id="cb6-153"><a href="#cb6-153"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb6-154"><a href="#cb6-154"></a>        <span class="st">"Outstanding"</span>,</span>
+<span id="cb6-155"><a href="#cb6-155"></a>        <span class="st">"Good"</span>,</span>
+<span id="cb6-156"><a href="#cb6-156"></a>        <span class="st">"Requires improvement"</span>,</span>
+<span id="cb6-157"><a href="#cb6-157"></a>        <span class="st">"Inadequate"</span>,</span>
+<span id="cb6-158"><a href="#cb6-158"></a>        <span class="st">"Insufficient evidence to rate"</span></span>
+<span id="cb6-159"><a href="#cb6-159"></a>      )</span>
+<span id="cb6-160"><a href="#cb6-160"></a>    )</span>
+<span id="cb6-161"><a href="#cb6-161"></a>  )</span>
+<span id="cb6-162"><a href="#cb6-162"></a></span>
+<span id="cb6-163"><a href="#cb6-163"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb6-164"><a href="#cb6-164"></a><span class="fu">font_add_google</span>(<span class="st">'Atkinson Hyperlegible'</span>)</span>
+<span id="cb6-165"><a href="#cb6-165"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-166"><a href="#cb6-166"></a>            <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Atkinson Hyperlegible"</span>, <span class="at">size =</span> <span class="dv">16</span>)))</span>
+<span id="cb6-167"><a href="#cb6-167"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb6-168"><a href="#cb6-168"></a></span>
+<span id="cb6-169"><a href="#cb6-169"></a>qual_plt <span class="ot">&lt;-</span> reg_quality <span class="sc">%&gt;%</span> </span>
+<span id="cb6-170"><a href="#cb6-170"></a>  <span class="fu">filter</span>(domain <span class="sc">==</span> <span class="st">"Overall"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-171"><a href="#cb6-171"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> year, <span class="at">Proportion =</span> region_prop, <span class="at">Rating =</span> latest_rating) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-172"><a href="#cb6-172"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Proportion, </span>
+<span id="cb6-173"><a href="#cb6-173"></a>             <span class="at">x =</span> Year, </span>
+<span id="cb6-174"><a href="#cb6-174"></a>             <span class="at">fill =</span> Rating)) <span class="sc">+</span></span>
+<span id="cb6-175"><a href="#cb6-175"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb6-176"><a href="#cb6-176"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_cols) <span class="sc">+</span></span>
+<span id="cb6-177"><a href="#cb6-177"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2016</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2019</span>,<span class="dv">2020</span>,<span class="dv">2021</span>,<span class="dv">2022</span>)) <span class="sc">+</span></span>
+<span id="cb6-178"><a href="#cb6-178"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-179"><a href="#cb6-179"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-180"><a href="#cb6-180"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb6-181"><a href="#cb6-181"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb6-182"><a href="#cb6-182"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> region) <span class="sc">+</span></span>
+<span id="cb6-183"><a href="#cb6-183"></a>  <span class="fu">ggtitle</span>(<span class="st">"Regional Care Quality Ratings 2016-2022 are stable and mostly Good"</span>)</span>
+<span id="cb6-184"><a href="#cb6-184"></a></span>
+<span id="cb6-185"><a href="#cb6-185"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb6-186"><a href="#cb6-186"></a>reg_ply <span class="ot">&lt;-</span></span>
+<span id="cb6-187"><a href="#cb6-187"></a>  <span class="fu">ggplotly</span>(qual_plt) <span class="sc">%&gt;%</span> <span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">'h'</span>))</span>
+<span id="cb6-188"><a href="#cb6-188"></a></span>
+<span id="cb6-189"><a href="#cb6-189"></a><span class="fu">library</span>(htmlwidgets)</span>
+<span id="cb6-190"><a href="#cb6-190"></a><span class="fu">saveWidget</span>(reg_ply, <span class="st">"cqc_quality_yrs.html"</span>, <span class="at">selfcontained =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section></section>
@@ -989,8 +1014,13 @@
 <h1></h1>
 
 </section>
-<section id="vis-map" class="slide level2">
+<section id="vis-map" class="slide level2 scrollable">
 <h2>Visualising Dementia Care Homes on a map</h2>
+<ol type="1">
+<li>I used the ONS local authority shape file to provide the map boundaries.</li>
+<li>From the 2022 CQC data I filtered for dementia care homes and extracted their ratings and coordinates.</li>
+<li>I transformed the coordinates of the ONS and CQC data into the same projection system, and then plotted using the <code>tmap</code> package to create an interactive map.</li>
+</ol>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1052,7 +1082,7 @@
 <h2>Immediate thoughts and questions</h2>
 <ul>
 <li>The CQC has an enormous number of service providers to assess.</li>
-<li>Care home bed capacity is in decline, but their is large regional variation.</li>
+<li>Care home bed capacity is increasing, but their is large regional variation.</li>
 <li>Requests for care support from 65+ adults is fairly stable in the short term, but there is variation in requests and in meeting demand across English regions.</li>
 <li>How useful are the ratings if most are ‘Good’?</li>
 </ul>
