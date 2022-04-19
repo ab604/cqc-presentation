@@ -704,3 +704,7 @@ Data Source: Care Quality Commission, ONS
 -   Care home bed capacity is increasing, but their is large regional variation.
 -   Requests for care support from 65+ adults is fairly stable in the short term, but there is variation in requests and in meeting demand across English regions.
 -   How useful are the ratings if most are 'Good'?
+
+## About me
+
+More details about me, including my CV, projects, and other links are on my website: [ab604.uk](https://ab604.uk/)
